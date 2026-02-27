@@ -41,6 +41,12 @@ export interface Report {
   created_at: string;
 }
 
+/** Report with PII fields stripped — safe for public API responses */
+export type PublicReport = Omit<
+  Report,
+  'reporter_ip' | 'reporter_ip_hash' | 'reporter_ua' | 'api_key_id'
+>;
+
 export interface Address {
   id: string;
   chain: Chain;
@@ -179,5 +185,5 @@ export interface SearchParams {
 // ──────────────────────────────────────────────
 
 export type AddressDetail = Address & {
-  reports: Report[];
+  reports: PublicReport[];
 };

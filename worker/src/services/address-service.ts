@@ -1,5 +1,5 @@
 import type { Env } from '../types/index.js';
-import type { Address, AddressDetail, Report } from '@cryptoscam/shared';
+import type { Address, AddressDetail, PublicReport } from '@cryptoscam/shared';
 
 export class AddressService {
   constructor(private readonly env: Env) {}
@@ -19,12 +19,11 @@ export class AddressService {
 
     const reportsResult = await this.env.DB.prepare(
       `SELECT id, chain, address, scam_type, description, loss_amount, loss_currency,
-              evidence_url, tx_hash, reporter_ip, reporter_ip_hash, reporter_ua,
-              source, api_key_id, created_at
+              evidence_url, tx_hash, source, created_at
        FROM reports WHERE address_id = ? ORDER BY created_at DESC`,
     )
       .bind(addressRecord.id)
-      .all<Report>();
+      .all<PublicReport>();
 
     return {
       ...addressRecord,

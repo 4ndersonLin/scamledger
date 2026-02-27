@@ -3,6 +3,7 @@ export type {
   ScamType,
   RiskLevel,
   Report,
+  PublicReport,
   Address,
   AddressDetail,
   User,
