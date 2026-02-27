@@ -112,7 +112,7 @@ export class ReportService {
       .bind(newReportCount, newTotalLost, now, now, addressId)
       .run();
 
-    // 7. Recalculate risk score
+    // 7. Recalculate risk score (including threat intelligence)
     const recentCountResult = await this.env.DB.prepare(
       `SELECT COUNT(*) as count FROM reports
        WHERE address_id = ? AND created_at >= datetime('now', '-7 days')`,
@@ -122,11 +122,21 @@ export class ReportService {
 
     const recentReportsCount = recentCountResult?.count ?? 0;
 
+    const threatIntelResult = await this.env.DB.prepare(
+      `SELECT COUNT(*) as total,
+              SUM(CASE WHEN source = 'ofac_sdn' THEN 1 ELSE 0 END) as ofac_count
+       FROM threat_intel WHERE address_id = ?`,
+    )
+      .bind(addressId)
+      .first<{ total: number; ofac_count: number }>();
+
     const riskScore = calculateRiskScore({
       reportCount: newReportCount,
       recentReportsCount,
       totalLostUsd: newTotalLost,
       lastReportedAt: now,
+      threatIntelCount: threatIntelResult?.total ?? 0,
+      hasOfacSanction: (threatIntelResult?.ofac_count ?? 0) > 0,
     });
 
     await this.env.DB.prepare('UPDATE addresses SET risk_score = ? WHERE id = ?')

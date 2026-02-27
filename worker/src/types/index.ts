@@ -7,6 +7,7 @@ export interface Env {
   RP_ID: string;
   RP_NAME: string;
   RP_ORIGIN: string;
+  THREAT_INTEL_ENABLED: string;
 }
 
 export interface SessionData {

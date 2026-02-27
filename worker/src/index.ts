@@ -3,6 +3,7 @@ import type { Env, Variables } from './types';
 import { corsMiddleware } from './middleware/cors';
 import { internalRoutes } from './routes/internal';
 import { v1Routes } from './routes/v1';
+import { ScheduledHandler } from './scheduled/handler';
 
 const app = new Hono<{ Bindings: Env; Variables: Variables }>();
 
@@ -49,4 +50,10 @@ app.onError((err, c) => {
   );
 });
 
-export default app;
+export default {
+  fetch: app.fetch,
+  async scheduled(_event: ScheduledEvent, env: Env, _ctx: ExecutionContext): Promise<void> {
+    const handler = new ScheduledHandler(env);
+    await handler.run();
+  },
+};

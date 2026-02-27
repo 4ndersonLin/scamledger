@@ -81,6 +81,20 @@
     "reportHistory": "回報歷史",
     "reportThis": "回報此地址"
   },
+  "threatIntel": {
+    "title": "外部情報",
+    "source": "來源",
+    "ofacSdn": "OFAC 制裁名單",
+    "confidence": "可信度",
+    "confirmed": "已確認",
+    "high": "高",
+    "medium": "中",
+    "low": "低",
+    "fetchedAt": "最後更新",
+    "ofacWarning": "此地址出現在美國財政部 OFAC 制裁名單上。",
+    "category": "分類",
+    "programs": "制裁計畫"
+  },
   "dashboard": {
     "title": "儀表板",
     "trends": "回報趨勢",

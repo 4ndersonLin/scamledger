@@ -81,6 +81,20 @@
     "reportHistory": "Report History",
     "reportThis": "Report This Address"
   },
+  "threatIntel": {
+    "title": "External Intelligence",
+    "source": "Source",
+    "ofacSdn": "OFAC Sanctioned",
+    "confidence": "Confidence",
+    "confirmed": "Confirmed",
+    "high": "High",
+    "medium": "Medium",
+    "low": "Low",
+    "fetchedAt": "Last Updated",
+    "ofacWarning": "This address appears on the US Treasury OFAC sanctions list.",
+    "category": "Category",
+    "programs": "Programs"
+  },
   "dashboard": {
     "title": "Dashboard",
     "trends": "Report Trends",
