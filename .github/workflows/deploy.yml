@@ -2,7 +2,7 @@ name: Deploy
 
 on:
   push:
-    branches: [main, develop]
+    branches: [master]
 
 jobs:
   deploy-worker:
@@ -16,7 +16,7 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - name: Apply D1 Migrations
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         run: cd worker && npx wrangler d1 migrations apply cryptoscam-db --remote
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -39,7 +39,7 @@ jobs:
       - run: npm ci
       - run: npm run build --workspace=frontend
       - name: Deploy to Cloudflare Pages
-        run: npx wrangler pages deploy frontend/dist --project-name=scamledger
+        run: npx wrangler pages deploy frontend/dist --project-name=scamledger --branch=main
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
