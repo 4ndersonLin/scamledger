@@ -5,11 +5,11 @@ import StatCard from '../shared/StatCard';
 
 function StatCardSkeleton(): React.ReactElement {
   return (
-    <div className="bg-navy-800 border border-navy-700 rounded-lg overflow-hidden animate-pulse">
-      <div className="h-0.5 bg-navy-600" />
+    <div className="bg-surface-raised border border-border rounded-xl overflow-hidden animate-pulse">
+      <div className="h-0.5 bg-border" />
       <div className="p-4">
-        <div className="h-8 w-24 bg-navy-700 rounded mb-2" />
-        <div className="h-4 w-32 bg-navy-700 rounded" />
+        <div className="h-8 w-24 bg-surface-sunken rounded mb-2" />
+        <div className="h-4 w-32 bg-surface-sunken rounded" />
       </div>
     </div>
   );
@@ -40,7 +40,7 @@ export default function StatCards(): React.ReactElement {
       <StatCard
         label={t('home.highRiskAddresses')}
         value={data.high_risk_addresses}
-        accentColor="#e63946"
+        accentColor="#ef4444"
       />
       <StatCard
         label={t('home.totalLoss')}
@@ -51,7 +51,7 @@ export default function StatCards(): React.ReactElement {
       <StatCard
         label={t('home.monthlyReports')}
         value={data.monthly_reports}
-        accentColor="#10b981"
+        accentColor="#22c55e"
       />
     </div>
   );

@@ -16,9 +16,7 @@ const ApiDocsPage = lazy(() => import('./pages/ApiDocsPage'));
 function LoadingFallback(): React.ReactElement {
   return (
     <div className="flex items-center justify-center min-h-[50vh]">
-      <div className="animate-pulse text-slate-400 font-heading uppercase tracking-wider">
-        Loading...
-      </div>
+      <div className="animate-pulse text-text-muted font-heading">Loading...</div>
     </div>
   );
 }

@@ -80,16 +80,16 @@ export default function DevRegisterPage(): React.ReactElement {
 
   return (
     <div className="max-w-md mx-auto mt-16 px-4">
-      <div className="bg-navy-800 border border-navy-700 rounded-lg overflow-hidden">
-        <div className="h-1 bg-gold" />
+      <div className="bg-surface-raised border border-border rounded-2xl shadow-xl overflow-hidden">
+        <div className="h-1 bg-accent-developer" />
         <div className="p-8">
-          <h1 className="text-2xl font-heading font-bold uppercase tracking-wider text-white mb-2">
+          <h1 className="text-2xl font-heading font-bold text-text-primary mb-2">
             {t('dev.register')}
           </h1>
-          <p className="text-slate-400 text-sm mb-8">{t('dev.registerDescription')}</p>
+          <p className="text-text-muted text-sm mb-8">{t('dev.registerDescription')}</p>
 
           {error && (
-            <div className="mb-6 p-3 bg-red-500/10 border border-red-500/30 rounded text-red-400 text-sm">
+            <div className="mb-6 p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm">
               {error}
             </div>
           )}
@@ -98,7 +98,7 @@ export default function DevRegisterPage(): React.ReactElement {
             <div>
               <label
                 htmlFor="displayName"
-                className="block text-sm font-medium text-slate-300 mb-2"
+                className="block text-sm font-medium text-text-secondary mb-2"
               >
                 {t('dev.displayName')}
               </label>
@@ -109,7 +109,7 @@ export default function DevRegisterPage(): React.ReactElement {
                 onChange={(e) => setDisplayName(e.target.value)}
                 placeholder={t('dev.displayNamePlaceholder')}
                 maxLength={64}
-                className="w-full px-4 py-3 bg-navy-900 border border-navy-600 rounded text-white placeholder-slate-500 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"
+                className="w-full px-4 py-3 bg-surface-sunken border border-border-subtle rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-developer focus:ring-1 focus:ring-accent-developer transition-colors"
                 disabled={loading}
               />
             </div>
@@ -119,18 +119,18 @@ export default function DevRegisterPage(): React.ReactElement {
             <button
               onClick={() => void handleRegister()}
               disabled={loading || !displayName.trim()}
-              className="w-full py-3 px-6 bg-gold text-navy-950 font-heading font-bold uppercase tracking-wider rounded hover:bg-gold/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="w-full py-3 px-6 bg-accent-developer text-white font-heading font-bold rounded-lg hover:bg-accent-developer/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               {loading ? t('common.loading') : t('dev.registerWithPasskey')}
             </button>
           </div>
 
           <div className="mt-6 text-center">
-            <p className="text-slate-400 text-sm">
+            <p className="text-text-muted text-sm">
               {t('dev.hasAccount')}{' '}
               <Link
                 to="/developers/login"
-                className="text-gold hover:text-gold/80 transition-colors"
+                className="text-accent-developer hover:text-accent-developer/80 transition-colors"
               >
                 {t('dev.loginLink')}
               </Link>

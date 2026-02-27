@@ -41,7 +41,7 @@ export default function ResultCard({ address }: ResultCardProps): React.ReactEle
       tabIndex={0}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      className="bg-navy-800 border border-navy-700 rounded-lg p-4 flex items-center gap-4 cursor-pointer hover:border-navy-600 transition-colors"
+      className="bg-surface-raised border border-border rounded-xl p-4 flex items-center gap-4 cursor-pointer hover:shadow-md transition-shadow"
     >
       {/* Risk badge */}
       <div className="shrink-0">
@@ -51,10 +51,10 @@ export default function ResultCard({ address }: ResultCardProps): React.ReactEle
       {/* Main content */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <span className="font-mono text-sm text-white truncate">
+          <span className="font-mono text-sm text-text-primary truncate">
             {truncateAddress(address.address)}
           </span>
-          <span className="shrink-0 inline-flex items-center px-2 py-0.5 rounded text-xs font-heading uppercase tracking-wider bg-navy-700 text-blue-accent">
+          <span className="shrink-0 inline-flex items-center px-2 py-0.5 rounded text-xs font-heading bg-surface-sunken text-accent border border-border">
             {address.chain}
           </span>
         </div>
@@ -62,10 +62,10 @@ export default function ResultCard({ address }: ResultCardProps): React.ReactEle
 
       {/* Stats */}
       <div className="shrink-0 text-right">
-        <div className="text-sm text-white font-heading">
+        <div className="text-sm text-text-primary font-heading">
           {address.report_count} {t('address.reportCount').toLowerCase()}
         </div>
-        <div className="text-xs text-slate-400">{formatUsd(address.total_lost_usd)}</div>
+        <div className="text-xs text-text-muted">{formatUsd(address.total_lost_usd)}</div>
       </div>
     </div>
   );

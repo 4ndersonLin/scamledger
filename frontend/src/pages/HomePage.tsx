@@ -30,10 +30,10 @@ export default function HomePage(): React.ReactElement {
       <OrganizationJsonLd />
       {/* Hero Section */}
       <section className="text-center py-8 md:py-12">
-        <h1 className="font-heading text-4xl md:text-5xl font-bold uppercase tracking-wider text-white">
+        <h1 className="font-heading text-4xl md:text-5xl font-bold text-text-primary">
           {t('home.title')}
         </h1>
-        <p className="mt-3 text-slate-400 text-lg max-w-2xl mx-auto">{t('home.subtitle')}</p>
+        <p className="mt-3 text-text-muted text-lg max-w-2xl mx-auto">{t('home.subtitle')}</p>
         <div className="mt-8 max-w-2xl mx-auto">
           <SearchBar />
         </div>
@@ -53,7 +53,7 @@ export default function HomePage(): React.ReactElement {
             <StatCard
               label={t('home.highRiskAddresses')}
               value={stats.data.high_risk_addresses}
-              accentColor="#e63946"
+              accentColor="#ef4444"
             />
             <StatCard
               label={t('home.totalLoss')}
@@ -64,7 +64,7 @@ export default function HomePage(): React.ReactElement {
             <StatCard
               label={t('home.monthlyReports')}
               value={stats.data.monthly_reports}
-              accentColor="#10b981"
+              accentColor="#22c55e"
             />
           </div>
         ) : null}
@@ -74,9 +74,9 @@ export default function HomePage(): React.ReactElement {
       <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <Link
           to="/report"
-          className="block bg-navy-800 border border-navy-700 rounded-lg overflow-hidden hover:border-threat-red/50 transition-colors group"
+          className="block bg-surface-raised border border-border rounded-xl overflow-hidden hover:shadow-md transition-shadow group"
         >
-          <div className="h-0.5 bg-threat-red" />
+          <div className="h-0.5 bg-danger" />
           <div className="p-6">
             <div className="flex items-center gap-3 mb-2">
               <svg
@@ -84,7 +84,7 @@ export default function HomePage(): React.ReactElement {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#e63946"
+                stroke="#ef4444"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -93,19 +93,19 @@ export default function HomePage(): React.ReactElement {
                 <line x1="12" y1="9" x2="12" y2="13" />
                 <line x1="12" y1="17" x2="12.01" y2="17" />
               </svg>
-              <h2 className="font-heading text-xl font-bold uppercase tracking-wider text-white group-hover:text-threat-red transition-colors">
+              <h2 className="font-heading text-xl font-bold text-text-primary group-hover:text-danger transition-colors">
                 {t('home.reportCta')}
               </h2>
             </div>
-            <p className="text-sm text-slate-400">{t('report.step1')}</p>
+            <p className="text-sm text-text-muted">{t('report.step1')}</p>
           </div>
         </Link>
 
         <Link
           to="/developers"
-          className="block bg-navy-800 border border-navy-700 rounded-lg overflow-hidden hover:border-gold/50 transition-colors group"
+          className="block bg-surface-raised border border-border rounded-xl overflow-hidden hover:shadow-md transition-shadow group"
         >
-          <div className="h-0.5 bg-gold" />
+          <div className="h-0.5 bg-accent-developer" />
           <div className="p-6">
             <div className="flex items-center gap-3 mb-2">
               <svg
@@ -113,7 +113,7 @@ export default function HomePage(): React.ReactElement {
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke="#c9a84c"
+                stroke="#2563eb"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -121,11 +121,11 @@ export default function HomePage(): React.ReactElement {
                 <polyline points="16 18 22 12 16 6" />
                 <polyline points="8 6 2 12 8 18" />
               </svg>
-              <h2 className="font-heading text-xl font-bold uppercase tracking-wider text-white group-hover:text-gold transition-colors">
+              <h2 className="font-heading text-xl font-bold text-text-primary group-hover:text-accent-developer transition-colors">
                 {t('home.apiCta')}
               </h2>
             </div>
-            <p className="text-sm text-slate-400">{t('nav.apiDocs')}</p>
+            <p className="text-sm text-text-muted">{t('nav.apiDocs')}</p>
           </div>
         </Link>
       </section>
@@ -133,12 +133,12 @@ export default function HomePage(): React.ReactElement {
       {/* Latest Reports Section */}
       <section>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-heading text-xl font-bold uppercase tracking-wider text-white">
+          <h2 className="font-heading text-xl font-bold text-text-primary">
             {t('home.latestReports')}
           </h2>
           <Link
             to="/search"
-            className="text-sm font-heading uppercase tracking-wider text-blue-accent hover:text-white transition-colors"
+            className="text-sm font-heading text-accent hover:text-text-primary transition-colors"
           >
             {t('common.viewAll')}
           </Link>
@@ -152,19 +152,19 @@ export default function HomePage(): React.ReactElement {
             ))}
           </div>
         ) : (
-          <p className="text-slate-400 text-sm">{t('search.noResults')}</p>
+          <p className="text-text-muted text-sm">{t('search.noResults')}</p>
         )}
       </section>
 
       {/* High Risk Addresses Section */}
       <section>
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-heading text-xl font-bold uppercase tracking-wider text-white">
+          <h2 className="font-heading text-xl font-bold text-text-primary">
             {t('home.highestRisk')}
           </h2>
           <Link
             to="/search?sort=risk"
-            className="text-sm font-heading uppercase tracking-wider text-blue-accent hover:text-white transition-colors"
+            className="text-sm font-heading text-accent hover:text-text-primary transition-colors"
           >
             {t('common.viewAll')}
           </Link>
@@ -178,7 +178,7 @@ export default function HomePage(): React.ReactElement {
             ))}
           </div>
         ) : (
-          <p className="text-slate-400 text-sm">{t('search.noResults')}</p>
+          <p className="text-text-muted text-sm">{t('search.noResults')}</p>
         )}
       </section>
     </div>

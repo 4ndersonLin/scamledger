@@ -23,15 +23,15 @@ interface BreakdownData {
 const CHAIN_COLORS: Record<string, string> = {
   ETH: '#3b82f6',
   BTC: '#f59e0b',
-  SOL: '#10b981',
-  TRON: '#e63946',
-  BSC: '#c9a84c',
+  SOL: '#22c55e',
+  TRON: '#ef4444',
+  BSC: '#2563eb',
   MATIC: '#8b5cf6',
-  OTHER: '#8892a8',
+  OTHER: '#94a3b8',
 };
 
-const AXIS_TICK_STYLE = { fill: '#8892a8', fontSize: 12 };
-const GRID_STROKE = '#1a2540';
+const AXIS_TICK_STYLE = { fill: '#64748b', fontSize: 12 };
+const GRID_STROKE = '#e2e8f0';
 
 interface BarEntry {
   name: string;
@@ -49,9 +49,9 @@ function CustomTooltip({
 
   const entry = payload[0];
   return (
-    <div className="bg-navy-800 border border-navy-700 rounded-lg px-3 py-2 shadow-lg">
-      <p className="text-xs text-slate-400 mb-1">{String(entry.name)}</p>
-      <p className="text-sm font-heading font-bold text-white">
+    <div className="bg-surface-raised border border-border rounded-lg px-3 py-2 shadow-lg">
+      <p className="text-xs text-text-muted mb-1">{String(entry.name)}</p>
+      <p className="text-sm font-heading font-bold text-text-primary">
         {Number(entry.value).toLocaleString()}
       </p>
     </div>
@@ -70,10 +70,10 @@ export default function ChainBarChart(): React.ReactElement {
     })) ?? [];
 
   return (
-    <div className="bg-navy-800 border border-navy-700 rounded-lg overflow-hidden">
-      <div className="h-0.5 bg-threat-amber" />
+    <div className="bg-surface-raised border border-border rounded-xl shadow-sm overflow-hidden">
+      <div className="h-0.5 bg-warning" />
       <div className="p-4 md:p-6">
-        <h3 className="font-heading text-lg font-bold uppercase tracking-wider text-white mb-6">
+        <h3 className="font-heading text-lg font-bold text-text-primary mb-6">
           {t('dashboard.chainDistribution')}
         </h3>
 
@@ -98,13 +98,13 @@ export default function ChainBarChart(): React.ReactElement {
               <Tooltip content={<CustomTooltip />} cursor={{ fill: 'rgba(59, 130, 246, 0.08)' }} />
               <Bar dataKey="value" radius={[4, 4, 0, 0]} maxBarSize={48}>
                 {chartData.map((entry) => (
-                  <Cell key={`bar-${entry.chain}`} fill={CHAIN_COLORS[entry.chain] ?? '#8892a8'} />
+                  <Cell key={`bar-${entry.chain}`} fill={CHAIN_COLORS[entry.chain] ?? '#94a3b8'} />
                 ))}
               </Bar>
             </BarChart>
           </ResponsiveContainer>
         ) : (
-          <div className="flex items-center justify-center h-[300px] text-slate-400 text-sm">
+          <div className="flex items-center justify-center h-[300px] text-text-muted text-sm">
             {t('search.noResults')}
           </div>
         )}

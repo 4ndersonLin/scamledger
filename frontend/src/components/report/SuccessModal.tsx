@@ -16,16 +16,16 @@ export default function SuccessModal({
   const { t } = useTranslation();
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-      <div className="bg-navy-800 border border-navy-600 rounded-lg p-8 max-w-md w-full mx-4 text-center">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+      <div className="bg-surface-raised border border-border rounded-2xl shadow-xl p-8 max-w-md w-full mx-4 text-center">
         {/* Green checkmark */}
-        <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-threat-green/20 flex items-center justify-center">
+        <div className="mx-auto mb-4 w-16 h-16 rounded-full bg-success/20 flex items-center justify-center">
           <svg
             width="32"
             height="32"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#10b981"
+            stroke="#22c55e"
             strokeWidth="2.5"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -34,7 +34,7 @@ export default function SuccessModal({
           </svg>
         </div>
 
-        <h2 className="text-xl font-heading font-bold uppercase tracking-wider text-white mb-2">
+        <h2 className="text-xl font-heading font-bold text-text-primary mb-2">
           {t('report.success')}
         </h2>
 
@@ -42,7 +42,7 @@ export default function SuccessModal({
           <Link
             to="/"
             onClick={onClose}
-            className="block bg-navy-700 hover:bg-navy-600 border border-navy-600 rounded px-4 py-2 text-sm font-heading uppercase tracking-wider text-slate-200 transition-colors"
+            className="block bg-surface-sunken hover:bg-border/50 border border-border rounded-lg px-4 py-2 text-sm font-heading text-text-secondary transition-colors"
           >
             {t('nav.home')}
           </Link>
@@ -50,7 +50,7 @@ export default function SuccessModal({
             <Link
               to={`/address/${chain}/${address}`}
               onClick={onClose}
-              className="block bg-blue-accent/20 hover:bg-blue-accent/30 border border-blue-accent/40 rounded px-4 py-2 text-sm font-heading uppercase tracking-wider text-blue-accent transition-colors"
+              className="block bg-accent/10 hover:bg-accent/20 border border-accent/30 rounded-lg px-4 py-2 text-sm font-heading text-accent transition-colors"
             >
               {t('address.reportThis')}
             </Link>

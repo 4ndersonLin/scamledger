@@ -12,7 +12,7 @@ interface SearchFiltersProps {
 }
 
 const selectClasses =
-  'bg-navy-800 border border-navy-600 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-accent focus:ring-1 focus:ring-blue-accent/30 transition-all';
+  'bg-surface-sunken border border-border-subtle rounded-lg px-3 py-2 text-sm text-text-primary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all';
 
 export default function SearchFilters({
   chain,
@@ -26,9 +26,7 @@ export default function SearchFilters({
 
   return (
     <div className="flex flex-wrap items-center gap-3">
-      <span className="text-xs font-heading uppercase tracking-wider text-slate-400">
-        {t('search.filters')}
-      </span>
+      <span className="text-xs font-heading text-text-muted">{t('search.filters')}</span>
 
       {/* Chain filter */}
       <select

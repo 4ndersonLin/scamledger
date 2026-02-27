@@ -15,17 +15,17 @@ const SIZE_CLASSES: Record<string, string> = {
 };
 
 const RISK_BG_CLASSES: Record<RiskLevel, string> = {
-  low: 'bg-threat-green/20 text-threat-green',
-  medium: 'bg-threat-amber/20 text-threat-amber',
-  high: 'bg-threat-red/20 text-threat-red',
-  critical: 'bg-threat-red/30 text-threat-red',
+  low: 'bg-success/20 text-success',
+  medium: 'bg-warning/20 text-warning',
+  high: 'bg-danger/20 text-danger',
+  critical: 'bg-danger/30 text-danger',
 };
 
 const RISK_GLOW_CLASSES: Record<RiskLevel, string> = {
-  low: 'shadow-[0_0_12px_rgba(16,185,129,0.3)]',
-  medium: 'shadow-[0_0_12px_rgba(245,158,11,0.3)]',
-  high: 'shadow-[0_0_12px_rgba(230,57,70,0.3)]',
-  critical: 'shadow-[0_0_16px_rgba(230,57,70,0.5)]',
+  low: 'shadow-[0_0_8px_rgba(34,197,94,0.2)]',
+  medium: 'shadow-[0_0_8px_rgba(245,158,11,0.2)]',
+  high: 'shadow-[0_0_8px_rgba(239,68,68,0.2)]',
+  critical: 'shadow-[0_0_12px_rgba(239,68,68,0.3)]',
 };
 
 export default function RiskBadge({
@@ -46,10 +46,7 @@ export default function RiskBadge({
         {score}
       </div>
       {showLabel && (
-        <span
-          className="font-heading uppercase tracking-wider text-xs"
-          style={{ color: levelInfo.color }}
-        >
+        <span className="font-heading text-xs font-medium" style={{ color: levelInfo.color }}>
           {t(`risk.${level}`)}
         </span>
       )}

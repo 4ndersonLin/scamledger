@@ -34,7 +34,7 @@ export default function Turnstile({ onVerify }: TurnstileProps): React.ReactElem
     widgetIdRef.current = window.turnstile.render(containerRef.current, {
       sitekey: SITE_KEY,
       callback: onVerify,
-      theme: 'dark',
+      theme: 'light',
       appearance: 'always',
     });
   }, [onVerify]);
@@ -77,7 +77,7 @@ export default function Turnstile({ onVerify }: TurnstileProps): React.ReactElem
 
   if (!SITE_KEY) {
     return (
-      <div className="p-4 border border-navy-700 rounded bg-navy-800 text-slate-400 text-sm">
+      <div className="p-4 border border-border rounded bg-surface-sunken text-text-muted text-sm">
         Turnstile not configured
       </div>
     );

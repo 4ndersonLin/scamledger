@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import type { Env } from '../types/index.js';
-import type { Report, ReportInput, ReportSource } from '@cryptoscam/shared';
+import type { PublicReport, ReportInput, ReportSource } from '@cryptoscam/shared';
 import { validateReportInput } from '@cryptoscam/shared';
 import { generateDailySalt, hashIpWithSalt } from '../utils/crypto.js';
 import { calculateRiskScore } from '../utils/risk-score.js';
@@ -19,7 +19,7 @@ export class ReportService {
     reporterUa: string,
     source: ReportSource,
     apiKeyId?: string,
-  ): Promise<Report> {
+  ): Promise<PublicReport> {
     // 1. Validate input
     const validation = validateReportInput(input);
     if (!validation.valid) {
@@ -138,7 +138,7 @@ export class ReportService {
     await this.cache.delete('stats:trends:30');
     await this.cache.delete('stats:breakdown');
 
-    // 9. Return the created report
+    // 9. Return the created report (PII stripped)
     return {
       id: reportId,
       chain: input.chain,
@@ -149,24 +149,19 @@ export class ReportService {
       loss_currency: input.loss_currency ?? null,
       evidence_url: input.evidence_url ?? null,
       tx_hash: input.tx_hash ?? null,
-      reporter_ip: reporterIp,
-      reporter_ip_hash: ipHash,
-      reporter_ua: reporterUa,
       source,
-      api_key_id: apiKeyId ?? null,
       created_at: now,
     };
   }
 
-  async getRecentReports(limit: number = 10): Promise<Report[]> {
+  async getRecentReports(limit: number = 10): Promise<PublicReport[]> {
     const result = await this.env.DB.prepare(
       `SELECT id, chain, address, scam_type, description, loss_amount, loss_currency,
-              evidence_url, tx_hash, reporter_ip, reporter_ip_hash, reporter_ua,
-              source, api_key_id, created_at
+              evidence_url, tx_hash, source, created_at
        FROM reports ORDER BY created_at DESC LIMIT ?`,
     )
       .bind(limit)
-      .all<Report>();
+      .all<PublicReport>();
 
     return result.results;
   }

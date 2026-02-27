@@ -15,6 +15,9 @@ interface ReportFormProps {
 
 const STEPS = [1, 2, 3] as const;
 
+const inputClasses =
+  'w-full bg-surface-sunken border border-border-subtle rounded-lg px-4 py-3 text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all';
+
 export default function ReportForm({
   initialChain,
   initialAddress,
@@ -106,10 +109,10 @@ export default function ReportForm({
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-heading font-bold ${
                 s === step
-                  ? 'bg-blue-accent text-white'
+                  ? 'bg-accent text-white'
                   : s < step
-                    ? 'bg-threat-green/20 text-threat-green border border-threat-green'
-                    : 'bg-navy-700 text-slate-400 border border-navy-600'
+                    ? 'bg-success/20 text-success border border-success'
+                    : 'bg-surface-sunken text-text-muted border border-border-subtle'
               }`}
             >
               {s < step ? (
@@ -132,7 +135,7 @@ export default function ReportForm({
             {s < 3 && (
               <div
                 className={`w-12 md:w-20 h-0.5 mx-1 ${
-                  s < step ? 'bg-threat-green' : 'bg-navy-600'
+                  s < step ? 'bg-success' : 'bg-border-subtle'
                 }`}
               />
             )}
@@ -145,9 +148,7 @@ export default function ReportForm({
         {STEPS.map((s) => (
           <span
             key={s}
-            className={`text-xs font-heading uppercase tracking-wider ${
-              s === step ? 'text-blue-accent' : 'text-slate-400'
-            }`}
+            className={`text-xs font-heading ${s === step ? 'text-accent' : 'text-text-muted'}`}
           >
             {t(`report.step${s}`)}
           </span>
@@ -156,9 +157,9 @@ export default function ReportForm({
 
       {/* Error messages */}
       {errors.length > 0 && (
-        <div className="mb-6 bg-threat-red/10 border border-threat-red/30 rounded-lg p-4">
+        <div className="mb-6 bg-danger/10 border border-danger/30 rounded-lg p-4">
           {errors.map((err, i) => (
-            <p key={i} className="text-sm text-threat-red">
+            <p key={i} className="text-sm text-danger">
               {err}
             </p>
           ))}
@@ -171,7 +172,7 @@ export default function ReportForm({
           <div className="space-y-4">
             <ChainSelector value={chain} onChange={(c) => setChain(c)} />
             <div>
-              <label className="block text-sm font-heading uppercase tracking-wider text-slate-300 mb-1">
+              <label className="block text-sm font-heading text-text-secondary mb-1">
                 {t('report.address')}
               </label>
               <AddressInput value={address} onChange={setAddress} chain={chain || undefined} />
@@ -184,7 +185,7 @@ export default function ReportForm({
         {step === 2 && (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-heading uppercase tracking-wider text-slate-300 mb-1">
+              <label className="block text-sm font-heading text-text-secondary mb-1">
                 {t('report.description')}
               </label>
               <textarea
@@ -192,17 +193,17 @@ export default function ReportForm({
                 onChange={(e) => setDescription(e.target.value)}
                 maxLength={MAX_DESCRIPTION_LENGTH}
                 rows={6}
-                className="w-full bg-navy-800 border border-navy-600 rounded px-4 py-3 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-accent focus:ring-1 focus:ring-blue-accent/30 transition-all resize-none"
+                className={`${inputClasses} resize-none`}
                 placeholder={t('report.description')}
               />
-              <div className="text-right text-xs text-slate-400 mt-1">
+              <div className="text-right text-xs text-text-muted mt-1">
                 {description.length} / {MAX_DESCRIPTION_LENGTH}
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-heading uppercase tracking-wider text-slate-300 mb-1">
+                <label className="block text-sm font-heading text-text-secondary mb-1">
                   {t('report.lossAmount')}
                 </label>
                 <input
@@ -211,46 +212,46 @@ export default function ReportForm({
                   onChange={(e) => setLossAmount(e.target.value)}
                   min="0"
                   step="any"
-                  className="w-full bg-navy-800 border border-navy-600 rounded px-4 py-3 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-accent focus:ring-1 focus:ring-blue-accent/30 transition-all"
+                  className={inputClasses}
                   placeholder="0.00"
                 />
               </div>
               <div>
-                <label className="block text-sm font-heading uppercase tracking-wider text-slate-300 mb-1">
+                <label className="block text-sm font-heading text-text-secondary mb-1">
                   {t('report.lossCurrency')}
                 </label>
                 <input
                   type="text"
                   value={lossCurrency}
                   onChange={(e) => setLossCurrency(e.target.value)}
-                  className="w-full bg-navy-800 border border-navy-600 rounded px-4 py-3 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-accent focus:ring-1 focus:ring-blue-accent/30 transition-all"
+                  className={inputClasses}
                   placeholder="USD, ETH, BTC..."
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-heading uppercase tracking-wider text-slate-300 mb-1">
+              <label className="block text-sm font-heading text-text-secondary mb-1">
                 {t('report.evidenceUrl')}
               </label>
               <input
                 type="url"
                 value={evidenceUrl}
                 onChange={(e) => setEvidenceUrl(e.target.value)}
-                className="w-full bg-navy-800 border border-navy-600 rounded px-4 py-3 font-mono text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-accent focus:ring-1 focus:ring-blue-accent/30 transition-all"
+                className={`${inputClasses} font-mono`}
                 placeholder="https://..."
               />
             </div>
 
             <div>
-              <label className="block text-sm font-heading uppercase tracking-wider text-slate-300 mb-1">
+              <label className="block text-sm font-heading text-text-secondary mb-1">
                 {t('report.txHash')}
               </label>
               <input
                 type="text"
                 value={txHash}
                 onChange={(e) => setTxHash(e.target.value)}
-                className="w-full bg-navy-800 border border-navy-600 rounded px-4 py-3 font-mono text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-accent focus:ring-1 focus:ring-blue-accent/30 transition-all"
+                className={`${inputClasses} font-mono`}
                 placeholder="0x..."
               />
             </div>
@@ -262,9 +263,9 @@ export default function ReportForm({
           <div className="space-y-6">
             <Turnstile onVerify={(token) => setTurnstileToken(token)} />
 
-            <div className="bg-threat-amber/10 border border-threat-amber/30 rounded-lg p-4 flex items-start gap-3">
+            <div className="bg-warning/10 border border-warning/30 rounded-lg p-4 flex items-start gap-3">
               <svg
-                className="shrink-0 mt-0.5 text-threat-amber"
+                className="shrink-0 mt-0.5 text-warning"
                 width="18"
                 height="18"
                 viewBox="0 0 24 24"
@@ -278,13 +279,13 @@ export default function ReportForm({
                 <line x1="12" y1="9" x2="12" y2="13" />
                 <line x1="12" y1="17" x2="12.01" y2="17" />
               </svg>
-              <p className="text-sm text-threat-amber">{t('report.ipDisclosure')}</p>
+              <p className="text-sm text-warning">{t('report.ipDisclosure')}</p>
             </div>
 
             <button
               type="submit"
               disabled={submitting}
-              className="w-full bg-blue-accent hover:bg-blue-accent/80 disabled:opacity-50 disabled:cursor-not-allowed text-white font-heading uppercase tracking-wider text-sm font-bold rounded py-3 transition-colors"
+              className="w-full bg-accent hover:bg-accent/80 disabled:opacity-50 disabled:cursor-not-allowed text-white font-heading text-sm font-bold rounded-lg py-3 transition-colors"
             >
               {submitting ? t('common.loading') : t('report.submit')}
             </button>
@@ -298,7 +299,7 @@ export default function ReportForm({
               type="button"
               onClick={handlePrev}
               disabled={step === 1}
-              className="px-6 py-2 text-sm font-heading uppercase tracking-wider text-slate-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+              className="px-6 py-2 text-sm font-heading text-text-muted hover:text-text-primary disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
             >
               {t('report.prev')}
             </button>
@@ -306,7 +307,7 @@ export default function ReportForm({
               type="button"
               onClick={handleNext}
               disabled={!canGoNext()}
-              className="px-6 py-2 bg-blue-accent hover:bg-blue-accent/80 disabled:opacity-50 disabled:cursor-not-allowed text-white font-heading uppercase tracking-wider text-sm font-bold rounded transition-colors"
+              className="px-6 py-2 bg-accent hover:bg-accent/80 disabled:opacity-50 disabled:cursor-not-allowed text-white font-heading text-sm font-bold rounded-lg transition-colors"
             >
               {t('report.next')}
             </button>
@@ -317,7 +318,7 @@ export default function ReportForm({
             <button
               type="button"
               onClick={handlePrev}
-              className="px-6 py-2 text-sm font-heading uppercase tracking-wider text-slate-400 hover:text-white transition-colors"
+              className="px-6 py-2 text-sm font-heading text-text-muted hover:text-text-primary transition-colors"
             >
               {t('report.prev')}
             </button>

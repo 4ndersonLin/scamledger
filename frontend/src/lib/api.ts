@@ -7,6 +7,7 @@ async function request<T>(path: string, options?: RequestInit): Promise<ApiRespo
   const url = path.startsWith('/v1') ? `${API_HOST}${path}` : `${BASE_URL}${path}`;
   const res = await fetch(url, {
     ...options,
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       ...options?.headers,

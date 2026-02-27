@@ -50,8 +50,8 @@ export default function AddressPage(): React.ReactElement {
   if (error || !data) {
     return (
       <div className="text-center py-16">
-        <div className="text-6xl mb-4 text-slate-400">404</div>
-        <p className="text-slate-400">{t('search.noResults')}</p>
+        <div className="text-6xl mb-4 text-text-muted">404</div>
+        <p className="text-text-muted">{t('search.noResults')}</p>
       </div>
     );
   }
@@ -61,13 +61,15 @@ export default function AddressPage(): React.ReactElement {
       {/* Address header */}
       <div>
         <div className="flex items-center gap-3 flex-wrap">
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-heading uppercase tracking-wider bg-navy-700 text-blue-accent">
+          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-heading bg-surface-sunken text-accent border border-border">
             {data.chain}
           </span>
-          <h1 className="font-mono text-lg md:text-xl text-white break-all">{data.address}</h1>
+          <h1 className="font-mono text-lg md:text-xl text-text-primary break-all">
+            {data.address}
+          </h1>
           <button
             onClick={handleCopy}
-            className="shrink-0 px-3 py-1 text-xs font-heading uppercase tracking-wider border border-navy-600 rounded text-slate-400 hover:text-white hover:border-navy-500 transition-colors"
+            className="shrink-0 px-3 py-1 text-xs font-heading border border-border-subtle rounded text-text-muted hover:text-text-primary hover:border-border transition-colors"
           >
             {copied ? t('common.copied') : t('common.copy')}
           </button>
@@ -77,47 +79,47 @@ export default function AddressPage(): React.ReactElement {
       {/* Risk score + Stats row */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Large risk badge */}
-        <div className="bg-navy-800 border border-navy-700 rounded-lg p-6 flex items-center gap-6">
+        <div className="bg-surface-raised border border-border rounded-xl shadow-sm p-6 flex items-center gap-6">
           <RiskBadge score={data.risk_score} size="lg" />
           <div>
-            <div className="font-heading text-sm uppercase tracking-wider text-slate-400">
-              {t('address.riskScore')}
+            <div className="font-heading text-sm text-text-muted">{t('address.riskScore')}</div>
+            <div className="font-heading text-3xl font-bold text-text-primary">
+              {data.risk_score}/100
             </div>
-            <div className="font-heading text-3xl font-bold text-white">{data.risk_score}/100</div>
           </div>
         </div>
 
         {/* Stats */}
-        <div className="bg-navy-800 border border-navy-700 rounded-lg p-6 grid grid-cols-2 gap-4">
+        <div className="bg-surface-raised border border-border rounded-xl shadow-sm p-6 grid grid-cols-2 gap-4">
           <div>
-            <div className="font-heading text-xs uppercase tracking-wider text-slate-400 mb-1">
+            <div className="font-heading text-xs text-text-muted mb-1">
               {t('address.reportCount')}
             </div>
-            <div className="font-heading text-2xl font-bold text-white">
+            <div className="font-heading text-2xl font-bold text-text-primary">
               {new Intl.NumberFormat('en-US').format(data.report_count)}
             </div>
           </div>
           <div>
-            <div className="font-heading text-xs uppercase tracking-wider text-slate-400 mb-1">
+            <div className="font-heading text-xs text-text-muted mb-1">
               {t('address.totalLoss')}
             </div>
-            <div className="font-heading text-2xl font-bold text-white">
+            <div className="font-heading text-2xl font-bold text-text-primary">
               {formatUsd(data.total_lost_usd)}
             </div>
           </div>
           <div>
-            <div className="font-heading text-xs uppercase tracking-wider text-slate-400 mb-1">
+            <div className="font-heading text-xs text-text-muted mb-1">
               {t('address.firstReported')}
             </div>
-            <div className="font-mono text-sm text-slate-200">
+            <div className="font-mono text-sm text-text-secondary">
               {formatDate(data.first_reported_at)}
             </div>
           </div>
           <div>
-            <div className="font-heading text-xs uppercase tracking-wider text-slate-400 mb-1">
+            <div className="font-heading text-xs text-text-muted mb-1">
               {t('address.lastReported')}
             </div>
-            <div className="font-mono text-sm text-slate-200">
+            <div className="font-mono text-sm text-text-secondary">
               {formatDate(data.last_reported_at)}
             </div>
           </div>
@@ -128,7 +130,7 @@ export default function AddressPage(): React.ReactElement {
       <div>
         <Link
           to={`/report?chain=${data.chain}&address=${encodeURIComponent(data.address)}`}
-          className="inline-flex items-center gap-2 px-6 py-3 bg-threat-red/20 hover:bg-threat-red/30 border border-threat-red/40 rounded text-sm font-heading uppercase tracking-wider text-threat-red transition-colors"
+          className="inline-flex items-center gap-2 px-6 py-3 bg-danger/10 hover:bg-danger/20 border border-danger/30 rounded-lg text-sm font-heading text-danger transition-colors"
         >
           <svg
             width="16"
@@ -150,50 +152,49 @@ export default function AddressPage(): React.ReactElement {
 
       {/* Report history */}
       <section>
-        <h2 className="font-heading text-xl font-bold uppercase tracking-wider text-white mb-4">
+        <h2 className="font-heading text-xl font-bold text-text-primary mb-4">
           {t('address.reportHistory')}
         </h2>
 
         {data.reports.length > 0 ? (
           <div className="space-y-4">
             {data.reports.map((report) => (
-              <div key={report.id} className="bg-navy-800 border border-navy-700 rounded-lg p-4">
+              <div
+                key={report.id}
+                className="bg-surface-raised border border-border rounded-xl shadow-sm p-4"
+              >
                 <div className="flex items-center justify-between flex-wrap gap-2 mb-2">
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-heading uppercase tracking-wider bg-navy-700 text-slate-300">
+                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-heading bg-surface-sunken text-text-secondary border border-border">
                       {t(`scamType.${report.scam_type}`)}
                     </span>
-                    <span className="text-xs text-slate-400 font-mono">
+                    <span className="text-xs text-text-muted font-mono">
                       {formatDate(report.created_at)}
                     </span>
                   </div>
                   {report.loss_amount !== null && report.loss_amount > 0 && (
-                    <span className="text-sm font-heading text-threat-amber">
+                    <span className="text-sm font-heading text-warning">
                       -{report.loss_amount} {report.loss_currency ?? 'USD'}
                     </span>
                   )}
                 </div>
-                <p className="text-sm text-slate-300 leading-relaxed">{report.description}</p>
+                <p className="text-sm text-text-secondary leading-relaxed">{report.description}</p>
                 {report.tx_hash && (
                   <div className="mt-2">
-                    <span className="text-xs text-slate-400 font-heading uppercase tracking-wider">
-                      TX:
-                    </span>{' '}
-                    <span className="text-xs font-mono text-slate-300 break-all">
+                    <span className="text-xs text-text-muted font-heading">TX:</span>{' '}
+                    <span className="text-xs font-mono text-text-secondary break-all">
                       {report.tx_hash}
                     </span>
                   </div>
                 )}
                 {report.evidence_url && (
                   <div className="mt-1">
-                    <span className="text-xs text-slate-400 font-heading uppercase tracking-wider">
-                      Evidence:
-                    </span>{' '}
+                    <span className="text-xs text-text-muted font-heading">Evidence:</span>{' '}
                     <a
                       href={report.evidence_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-mono text-blue-accent hover:underline break-all"
+                      className="text-xs font-mono text-accent hover:underline break-all"
                     >
                       {report.evidence_url}
                     </a>
@@ -203,7 +204,7 @@ export default function AddressPage(): React.ReactElement {
             ))}
           </div>
         ) : (
-          <p className="text-slate-400 text-sm">{t('search.noResults')}</p>
+          <p className="text-text-muted text-sm">{t('search.noResults')}</p>
         )}
       </section>
     </div>
