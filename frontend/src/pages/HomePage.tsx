@@ -28,6 +28,7 @@ export default function HomePage(): React.ReactElement {
     <div className="space-y-12">
       <WebsiteJsonLd />
       <OrganizationJsonLd />
+
       {/* Hero Section */}
       <section className="text-center py-8 md:py-12">
         <h1 className="font-heading text-4xl md:text-5xl font-bold text-text-primary">
@@ -39,8 +40,155 @@ export default function HomePage(): React.ReactElement {
         </div>
       </section>
 
-      {/* Stats Cards Row */}
+      {/* Report CTA */}
       <section>
+        <Link
+          to="/report"
+          className="block bg-surface-raised border border-border rounded-xl overflow-hidden hover:shadow-md transition-shadow group"
+        >
+          <div className="h-1 bg-danger" />
+          <div className="p-6 md:p-8 text-center">
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <svg
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#ef4444"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="M12 8v4" />
+                <circle cx="12" cy="16" r="0.5" fill="#ef4444" />
+              </svg>
+              <h2 className="font-heading text-2xl font-bold text-text-primary group-hover:text-danger transition-colors">
+                {t('home.reportCtaTitle')}
+              </h2>
+            </div>
+            <p className="text-text-muted max-w-xl mx-auto mb-4">{t('home.reportCtaDesc')}</p>
+            <span className="inline-block bg-danger text-white font-heading font-bold px-6 py-3 rounded-lg text-lg group-hover:bg-red-600 transition-colors">
+              {t('home.reportCtaButton')}
+            </span>
+          </div>
+        </Link>
+      </section>
+
+      {/* How Your Report Helps */}
+      <section>
+        <h2 className="font-heading text-2xl font-bold text-text-primary text-center mb-6">
+          {t('home.howHelpsTitle')}
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {/* Protect Others */}
+          <div className="bg-surface-raised border border-border rounded-xl p-6 text-center">
+            <div className="flex justify-center mb-3">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#10b981"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            </div>
+            <h3 className="font-heading text-lg font-bold text-text-primary mb-2">
+              {t('home.helpProtect')}
+            </h3>
+            <p className="text-sm text-text-muted">{t('home.helpProtectDesc')}</p>
+          </div>
+
+          {/* Build the Database */}
+          <div className="bg-surface-raised border border-border rounded-xl p-6 text-center">
+            <div className="flex justify-center mb-3">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#3b82f6"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <ellipse cx="12" cy="5" rx="9" ry="3" />
+                <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
+                <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
+              </svg>
+            </div>
+            <h3 className="font-heading text-lg font-bold text-text-primary mb-2">
+              {t('home.helpDatabase')}
+            </h3>
+            <p className="text-sm text-text-muted">{t('home.helpDatabaseDesc')}</p>
+          </div>
+
+          {/* Identify Patterns */}
+          <div className="bg-surface-raised border border-border rounded-xl p-6 text-center">
+            <div className="flex justify-center mb-3">
+              <svg
+                width="40"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#f59e0b"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="M21 21l-4.35-4.35" />
+                <path d="M11 8v6" />
+                <path d="M8 11h6" />
+              </svg>
+            </div>
+            <h3 className="font-heading text-lg font-bold text-text-primary mb-2">
+              {t('home.helpTrack')}
+            </h3>
+            <p className="text-sm text-text-muted">{t('home.helpTrackDesc')}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section>
+        <h2 className="font-heading text-2xl font-bold text-text-primary text-center mb-6">
+          {t('home.howItWorksTitle')}
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {[
+            { num: '1', title: t('home.step1Title'), desc: t('home.step1Desc') },
+            { num: '2', title: t('home.step2Title'), desc: t('home.step2Desc') },
+            { num: '3', title: t('home.step3Title'), desc: t('home.step3Desc') },
+          ].map((step) => (
+            <div
+              key={step.num}
+              className="bg-surface-raised border border-border rounded-xl p-6 text-center"
+            >
+              <div className="flex justify-center mb-3">
+                <div className="w-10 h-10 rounded-full bg-accent text-white font-heading font-bold text-lg flex items-center justify-center">
+                  {step.num}
+                </div>
+              </div>
+              <h3 className="font-heading text-lg font-bold text-text-primary mb-2">
+                {step.title}
+              </h3>
+              <p className="text-sm text-text-muted">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Community Stats */}
+      <section>
+        <h2 className="font-heading text-2xl font-bold text-text-primary text-center mb-6">
+          {t('home.communityStats')}
+        </h2>
         {stats.loading ? (
           <LoadingSpinner />
         ) : stats.data ? (
@@ -68,66 +216,6 @@ export default function HomePage(): React.ReactElement {
             />
           </div>
         ) : null}
-      </section>
-
-      {/* Dual CTA Cards */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Link
-          to="/report"
-          className="block bg-surface-raised border border-border rounded-xl overflow-hidden hover:shadow-md transition-shadow group"
-        >
-          <div className="h-0.5 bg-danger" />
-          <div className="p-6">
-            <div className="flex items-center gap-3 mb-2">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#ef4444"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
-                <line x1="12" y1="9" x2="12" y2="13" />
-                <line x1="12" y1="17" x2="12.01" y2="17" />
-              </svg>
-              <h2 className="font-heading text-xl font-bold text-text-primary group-hover:text-danger transition-colors">
-                {t('home.reportCta')}
-              </h2>
-            </div>
-            <p className="text-sm text-text-muted">{t('report.step1')}</p>
-          </div>
-        </Link>
-
-        <Link
-          to="/developers"
-          className="block bg-surface-raised border border-border rounded-xl overflow-hidden hover:shadow-md transition-shadow group"
-        >
-          <div className="h-0.5 bg-accent-developer" />
-          <div className="p-6">
-            <div className="flex items-center gap-3 mb-2">
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="#2563eb"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="16 18 22 12 16 6" />
-                <polyline points="8 6 2 12 8 18" />
-              </svg>
-              <h2 className="font-heading text-xl font-bold text-text-primary group-hover:text-accent-developer transition-colors">
-                {t('home.apiCta')}
-              </h2>
-            </div>
-            <p className="text-sm text-text-muted">{t('nav.apiDocs')}</p>
-          </div>
-        </Link>
       </section>
 
       {/* Latest Reports Section */}
