@@ -1,40 +1,27 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-navy-950: #0a0e1a;
-  --color-navy-900: #0d1321;
-  --color-navy-800: #131b2e;
-  --color-navy-700: #1a2540;
-  --color-navy-600: #243052;
-  --color-slate-200: #c8d0e0;
-  --color-slate-300: #a8b2c8;
-  --color-slate-400: #8892a8;
-  --color-blue-accent: #3b82f6;
-  --color-threat-red: #e63946;
-  --color-threat-amber: #f59e0b;
-  --color-threat-green: #10b981;
-  --color-gold: #c9a84c;
-  --font-heading: 'Barlow Condensed', sans-serif;
+  --color-surface: #f8fafc;
+  --color-surface-raised: #ffffff;
+  --color-surface-sunken: #f1f5f9;
+  --color-border: #e2e8f0;
+  --color-border-subtle: #cbd5e1;
+  --color-text-primary: #334155;
+  --color-text-secondary: #64748b;
+  --color-text-muted: #94a3b8;
+  --color-accent: #3b82f6;
+  --color-accent-developer: #2563eb;
+  --color-danger: #ef4444;
+  --color-warning: #f59e0b;
+  --color-success: #22c55e;
+  --font-heading: 'Barlow', 'Noto Sans TC', sans-serif;
   --font-body: 'Barlow', 'Noto Sans TC', sans-serif;
   --font-mono: 'IBM Plex Mono', monospace;
 }
 
 body {
-  @apply bg-navy-950 text-slate-200 font-body antialiased;
+  @apply bg-surface text-text-secondary font-body antialiased;
   min-height: 100vh;
-}
-
-/* Grid surveillance background */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-  z-index: 0;
 }
 
 #root {
@@ -70,21 +57,6 @@ body::before {
 }
 .stagger-4 {
   animation-delay: 0.2s;
-}
-
-/* Green pulse for status dot */
-@keyframes pulse-glow {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
-  }
-  50% {
-    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0);
-  }
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 2s infinite;
 }
 
 /* Search focus glow */

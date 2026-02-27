@@ -1,15 +1,18 @@
 {
+  "banner": {
+    "helpMessage": "Been scammed? We're here to help. Report it anonymously."
+  },
   "nav": {
-    "home": "Threat Feed",
+    "home": "Home",
     "report": "Submit Report",
-    "search": "Investigate",
-    "dashboard": "Threat Dashboard",
+    "search": "Search",
+    "dashboard": "Dashboard",
     "developers": "Developers",
     "apiDocs": "API Docs"
   },
   "home": {
-    "title": "Crypto Threat Intelligence Center",
-    "subtitle": "Search known scam addresses or report new threat incidents",
+    "title": "Crypto Scam Report Center",
+    "subtitle": "Search known scam addresses or report new incidents — free and anonymous",
     "searchPlaceholder": "Enter wallet address or keyword to search...",
     "totalReports": "Total Reports",
     "highRiskAddresses": "High Risk Addresses",
@@ -17,7 +20,7 @@
     "monthlyReports": "Monthly Reports",
     "reportCta": "Report Scam Incident",
     "apiCta": "Developer API",
-    "latestReports": "Latest Threat Reports",
+    "latestReports": "Latest Reports",
     "highestRisk": "Highest Risk Addresses"
   },
   "report": {
@@ -63,9 +66,9 @@
     "reportThis": "Report This Address"
   },
   "dashboard": {
-    "title": "Threat Dashboard",
+    "title": "Dashboard",
     "trends": "Report Trends",
-    "typeDistribution": "Threat Classification",
+    "typeDistribution": "Scam Type Distribution",
     "chainDistribution": "Chain Distribution",
     "days7": "7 Days",
     "days30": "30 Days",
@@ -132,7 +135,7 @@
     "low": "Low Risk",
     "medium": "Medium Risk",
     "high": "High Risk",
-    "critical": "Critical Threat"
+    "critical": "Critical"
   },
   "common": {
     "loading": "Loading...",

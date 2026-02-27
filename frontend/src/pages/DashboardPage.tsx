@@ -10,7 +10,7 @@ export default function DashboardPage(): React.ReactElement {
   return (
     <div className="space-y-8">
       {/* Page Heading */}
-      <h1 className="font-heading text-3xl md:text-4xl font-bold uppercase tracking-wider text-white">
+      <h1 className="font-heading text-3xl md:text-4xl font-bold text-text-primary">
         {t('dashboard.title')}
       </h1>
 

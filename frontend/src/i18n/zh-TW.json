@@ -1,15 +1,18 @@
 {
+  "banner": {
+    "helpMessage": "遇到詐騙？這裡可以幫助你，匿名回報。"
+  },
   "nav": {
-    "home": "威脅情報",
+    "home": "首頁",
     "report": "回報事件",
-    "search": "調查",
-    "dashboard": "威脅儀表板",
+    "search": "搜尋",
+    "dashboard": "儀表板",
     "developers": "開發者",
     "apiDocs": "API 文件"
   },
   "home": {
-    "title": "虛擬貨幣威脅情報中心",
-    "subtitle": "搜尋已知詐騙地址或回報新的威脅事件",
+    "title": "虛擬貨幣詐騙回報中心",
+    "subtitle": "搜尋已知詐騙地址或回報新事件 — 免費且匿名",
     "searchPlaceholder": "輸入錢包地址或關鍵字搜尋...",
     "totalReports": "總回報數",
     "highRiskAddresses": "高危地址",
@@ -17,7 +20,7 @@
     "monthlyReports": "本月回報",
     "reportCta": "回報詐騙事件",
     "apiCta": "開發者 API",
-    "latestReports": "最新威脅回報",
+    "latestReports": "最新回報",
     "highestRisk": "最高風險地址"
   },
   "report": {
@@ -63,9 +66,9 @@
     "reportThis": "回報此地址"
   },
   "dashboard": {
-    "title": "威脅儀表板",
+    "title": "儀表板",
     "trends": "回報趨勢",
-    "typeDistribution": "威脅類型分佈",
+    "typeDistribution": "詐騙類型分佈",
     "chainDistribution": "區塊鏈分佈",
     "days7": "7 天",
     "days30": "30 天",
@@ -132,7 +135,7 @@
     "low": "低風險",
     "medium": "中風險",
     "high": "高風險",
-    "critical": "嚴重威脅"
+    "critical": "嚴重"
   },
   "common": {
     "loading": "載入中...",

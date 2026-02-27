@@ -64,16 +64,16 @@ export default function DevLoginPage(): React.ReactElement {
 
   return (
     <div className="max-w-md mx-auto mt-16 px-4">
-      <div className="bg-navy-800 border border-navy-700 rounded-lg overflow-hidden">
-        <div className="h-1 bg-gold" />
+      <div className="bg-surface-raised border border-border rounded-2xl shadow-xl overflow-hidden">
+        <div className="h-1 bg-accent-developer" />
         <div className="p-8">
-          <h1 className="text-2xl font-heading font-bold uppercase tracking-wider text-white mb-2">
+          <h1 className="text-2xl font-heading font-bold text-text-primary mb-2">
             {t('dev.login')}
           </h1>
-          <p className="text-slate-400 text-sm mb-8">{t('dev.loginDescription')}</p>
+          <p className="text-text-muted text-sm mb-8">{t('dev.loginDescription')}</p>
 
           {error && (
-            <div className="mb-6 p-3 bg-red-500/10 border border-red-500/30 rounded text-red-400 text-sm">
+            <div className="mb-6 p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm">
               {error}
             </div>
           )}
@@ -81,17 +81,17 @@ export default function DevLoginPage(): React.ReactElement {
           <button
             onClick={() => void handleLogin()}
             disabled={loading}
-            className="w-full py-3 px-6 bg-gold text-navy-950 font-heading font-bold uppercase tracking-wider rounded hover:bg-gold/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="w-full py-3 px-6 bg-accent-developer text-white font-heading font-bold rounded-lg hover:bg-accent-developer/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {loading ? t('common.loading') : t('dev.loginWithPasskey')}
           </button>
 
           <div className="mt-6 text-center">
-            <p className="text-slate-400 text-sm">
+            <p className="text-text-muted text-sm">
               {t('dev.noAccount')}{' '}
               <Link
                 to="/developers/register"
-                className="text-gold hover:text-gold/80 transition-colors"
+                className="text-accent-developer hover:text-accent-developer/80 transition-colors"
               >
                 {t('dev.registerLink')}
               </Link>

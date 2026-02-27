@@ -13,10 +13,10 @@ interface MethodBadgeProps {
 
 function MethodBadge({ method }: MethodBadgeProps): React.ReactElement {
   const colorMap: Record<string, string> = {
-    GET: 'bg-threat-green/20 text-threat-green border-threat-green/30',
-    POST: 'bg-blue-accent/20 text-blue-accent border-blue-accent/30',
-    DELETE: 'bg-threat-red/20 text-threat-red border-threat-red/30',
-    PATCH: 'bg-threat-amber/20 text-threat-amber border-threat-amber/30',
+    GET: 'bg-success/20 text-success border-success/30',
+    POST: 'bg-accent/20 text-accent border-accent/30',
+    DELETE: 'bg-danger/20 text-danger border-danger/30',
+    PATCH: 'bg-warning/20 text-warning border-warning/30',
   };
 
   return (
@@ -30,7 +30,7 @@ function MethodBadge({ method }: MethodBadgeProps): React.ReactElement {
 
 function CodeBlock({ children }: { children: string }): React.ReactElement {
   return (
-    <pre className="bg-navy-950 border border-navy-700 rounded-lg p-4 overflow-x-auto text-sm font-mono text-slate-300 leading-relaxed">
+    <pre className="bg-slate-900 border border-slate-700 rounded-lg p-4 overflow-x-auto text-sm font-mono text-slate-300 leading-relaxed">
       <code>{children}</code>
     </pre>
   );
@@ -45,11 +45,11 @@ interface EndpointProps {
 
 function Endpoint({ method, path, description, children }: EndpointProps): React.ReactElement {
   return (
-    <div className="bg-navy-800 border border-navy-700 rounded-lg overflow-hidden">
-      <div className="p-4 flex flex-wrap items-center gap-3 border-b border-navy-700">
+    <div className="bg-surface-raised border border-border rounded-xl shadow-sm overflow-hidden">
+      <div className="p-4 flex flex-wrap items-center gap-3 border-b border-border">
         <MethodBadge method={method} />
-        <code className="font-mono text-sm text-white">{path}</code>
-        <span className="text-sm text-slate-400 ml-auto">{description}</span>
+        <code className="font-mono text-sm text-text-primary">{path}</code>
+        <span className="text-sm text-text-muted ml-auto">{description}</span>
       </div>
       {children && <div className="p-4 space-y-4">{children}</div>}
     </div>
@@ -113,10 +113,10 @@ export default function ApiDocsPage(): React.ReactElement {
             <button
               key={section}
               onClick={() => handleSidebarClick(section)}
-              className={`block w-full text-left px-3 py-2 rounded text-sm font-heading uppercase tracking-wider transition-colors ${
+              className={`block w-full text-left px-3 py-2 rounded text-sm font-heading transition-colors ${
                 activeSection === section
-                  ? 'bg-navy-800 text-blue-accent border-l-2 border-blue-accent'
-                  : 'text-slate-400 hover:text-white hover:bg-navy-800/50'
+                  ? 'bg-surface-sunken text-accent border-l-2 border-accent'
+                  : 'text-text-muted hover:text-text-primary hover:bg-surface-sunken'
               }`}
             >
               {sidebarLabels[section]}
@@ -129,27 +129,27 @@ export default function ApiDocsPage(): React.ReactElement {
       <div className="flex-1 min-w-0 space-y-12 pb-16">
         {/* Page header */}
         <header className="animate-fade-in">
-          <h1 className="font-heading text-3xl md:text-4xl font-bold uppercase tracking-wider text-white">
+          <h1 className="font-heading text-3xl md:text-4xl font-bold text-text-primary">
             {t('apiDocs.title')}
           </h1>
-          <p className="mt-3 text-slate-400 text-lg max-w-2xl">{t('apiDocs.description')}</p>
+          <p className="mt-3 text-text-muted text-lg max-w-2xl">{t('apiDocs.description')}</p>
         </header>
 
         {/* ─── Quick Start ─── */}
         <section id="quick-start" className="space-y-6 animate-fade-in stagger-1">
-          <h2 className="font-heading text-2xl font-bold uppercase tracking-wider text-white border-b border-navy-700 pb-3">
+          <h2 className="font-heading text-2xl font-bold text-text-primary border-b border-border pb-3">
             {t('apiDocs.quickStart')}
           </h2>
-          <p className="text-slate-300">{t('apiDocs.quickStartDesc')}</p>
+          <p className="text-text-secondary">{t('apiDocs.quickStartDesc')}</p>
 
           {/* Step 1 */}
           <div className="space-y-2">
-            <h3 className="font-heading text-lg font-semibold uppercase tracking-wider text-white">
+            <h3 className="font-heading text-lg font-semibold text-text-primary">
               {t('apiDocs.step1Title')}
             </h3>
-            <p className="text-slate-400 text-sm">
+            <p className="text-text-muted text-sm">
               {t('apiDocs.step1Desc')}{' '}
-              <Link to="/developers/register" className="text-blue-accent hover:underline">
+              <Link to="/developers/register" className="text-accent hover:underline">
                 /developers/register
               </Link>
             </p>
@@ -157,28 +157,28 @@ export default function ApiDocsPage(): React.ReactElement {
 
           {/* Step 2 */}
           <div className="space-y-2">
-            <h3 className="font-heading text-lg font-semibold uppercase tracking-wider text-white">
+            <h3 className="font-heading text-lg font-semibold text-text-primary">
               {t('apiDocs.step2Title')}
             </h3>
-            <p className="text-slate-400 text-sm">{t('apiDocs.step2Desc')}</p>
+            <p className="text-text-muted text-sm">{t('apiDocs.step2Desc')}</p>
             <CodeBlock>{'https://api.scamledger.com/v1'}</CodeBlock>
           </div>
 
           {/* Step 3 */}
           <div className="space-y-2">
-            <h3 className="font-heading text-lg font-semibold uppercase tracking-wider text-white">
+            <h3 className="font-heading text-lg font-semibold text-text-primary">
               {t('apiDocs.step3Title')}
             </h3>
-            <p className="text-slate-400 text-sm">{t('apiDocs.step3Desc')}</p>
+            <p className="text-text-muted text-sm">{t('apiDocs.step3Desc')}</p>
             <CodeBlock>{'X-API-Key: csr_your_key_here'}</CodeBlock>
           </div>
 
           {/* Step 4 */}
           <div className="space-y-2">
-            <h3 className="font-heading text-lg font-semibold uppercase tracking-wider text-white">
+            <h3 className="font-heading text-lg font-semibold text-text-primary">
               {t('apiDocs.step4Title')}
             </h3>
-            <p className="text-slate-400 text-sm">{t('apiDocs.step4Desc')}</p>
+            <p className="text-text-muted text-sm">{t('apiDocs.step4Desc')}</p>
             <CodeBlock>{`curl -X GET "https://api.scamledger.com/v1/search?q=0x742d35Cc6634C0532925a3b844Bc9e7595f2bD18" \\
   -H "X-API-Key: csr_your_key_here"`}</CodeBlock>
           </div>
@@ -186,19 +186,19 @@ export default function ApiDocsPage(): React.ReactElement {
 
         {/* ─── Endpoints ─── */}
         <section id="endpoints" className="space-y-8 animate-fade-in stagger-2">
-          <h2 className="font-heading text-2xl font-bold uppercase tracking-wider text-white border-b border-navy-700 pb-3">
+          <h2 className="font-heading text-2xl font-bold text-text-primary border-b border-border pb-3">
             {t('apiDocs.endpoints')}
           </h2>
 
           {/* Report Endpoints */}
           <div className="space-y-4">
-            <h3 className="font-heading text-xl font-semibold uppercase tracking-wider text-white">
+            <h3 className="font-heading text-xl font-semibold text-text-primary">
               {t('apiDocs.reportEndpoints')}
             </h3>
 
             <Endpoint method="POST" path="/v1/reports" description={t('apiDocs.submitReport')}>
               <div className="space-y-3">
-                <h4 className="text-sm font-heading uppercase tracking-wider text-slate-300">
+                <h4 className="text-sm font-heading text-text-secondary">
                   {t('apiDocs.requestBody')}
                 </h4>
                 <CodeBlock>{`{
@@ -211,7 +211,7 @@ export default function ApiDocsPage(): React.ReactElement {
   "evidence_url": "https://example.com/evidence",
   "tx_hash": "0xabc123..."
 }`}</CodeBlock>
-                <h4 className="text-sm font-heading uppercase tracking-wider text-slate-300">
+                <h4 className="text-sm font-heading text-text-secondary">
                   {t('apiDocs.response')}
                 </h4>
                 <CodeBlock>{`{
@@ -238,7 +238,7 @@ export default function ApiDocsPage(): React.ReactElement {
               description={t('apiDocs.submitReportBatch')}
             >
               <div className="space-y-3">
-                <h4 className="text-sm font-heading uppercase tracking-wider text-slate-300">
+                <h4 className="text-sm font-heading text-text-secondary">
                   {t('apiDocs.requestBody')}
                 </h4>
                 <CodeBlock>{`{
@@ -263,66 +263,66 @@ export default function ApiDocsPage(): React.ReactElement {
 
           {/* Search Endpoints */}
           <div className="space-y-4">
-            <h3 className="font-heading text-xl font-semibold uppercase tracking-wider text-white">
+            <h3 className="font-heading text-xl font-semibold text-text-primary">
               {t('apiDocs.searchEndpoints')}
             </h3>
 
             <Endpoint method="GET" path="/v1/search" description={t('apiDocs.searchReports')}>
               <div className="space-y-3">
-                <h4 className="text-sm font-heading uppercase tracking-wider text-slate-300">
+                <h4 className="text-sm font-heading text-text-secondary">
                   {t('apiDocs.queryParams')}
                 </h4>
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="border-b border-navy-700 text-left">
-                        <th className="py-2 pr-4 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                      <tr className="border-b border-border text-left">
+                        <th className="py-2 pr-4 font-heading text-text-muted text-xs">
                           {t('apiDocs.param')}
                         </th>
-                        <th className="py-2 pr-4 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                        <th className="py-2 pr-4 font-heading text-text-muted text-xs">
                           {t('apiDocs.type')}
                         </th>
-                        <th className="py-2 pr-4 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                        <th className="py-2 pr-4 font-heading text-text-muted text-xs">
                           {t('apiDocs.required')}
                         </th>
-                        <th className="py-2 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                        <th className="py-2 font-heading text-text-muted text-xs">
                           {t('apiDocs.paramDesc')}
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="text-slate-300">
-                      <tr className="border-b border-navy-700/50">
-                        <td className="py-2 pr-4 font-mono text-white">q</td>
+                    <tbody className="text-text-secondary">
+                      <tr className="border-b border-border/50">
+                        <td className="py-2 pr-4 font-mono text-text-primary">q</td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">{t('apiDocs.no')}</td>
                         <td className="py-2">Address or keyword</td>
                       </tr>
-                      <tr className="border-b border-navy-700/50">
-                        <td className="py-2 pr-4 font-mono text-white">chain</td>
+                      <tr className="border-b border-border/50">
+                        <td className="py-2 pr-4 font-mono text-text-primary">chain</td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">{t('apiDocs.no')}</td>
                         <td className="py-2">ETH, BTC, SOL, TRON, BSC, MATIC, OTHER</td>
                       </tr>
-                      <tr className="border-b border-navy-700/50">
-                        <td className="py-2 pr-4 font-mono text-white">scam_type</td>
+                      <tr className="border-b border-border/50">
+                        <td className="py-2 pr-4 font-mono text-text-primary">scam_type</td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">{t('apiDocs.no')}</td>
                         <td className="py-2">Filter by scam type</td>
                       </tr>
-                      <tr className="border-b border-navy-700/50">
-                        <td className="py-2 pr-4 font-mono text-white">sort</td>
+                      <tr className="border-b border-border/50">
+                        <td className="py-2 pr-4 font-mono text-text-primary">sort</td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2 pr-4">{t('apiDocs.no')}</td>
                         <td className="py-2">newest, risk, reports</td>
                       </tr>
-                      <tr className="border-b border-navy-700/50">
-                        <td className="py-2 pr-4 font-mono text-white">page</td>
+                      <tr className="border-b border-border/50">
+                        <td className="py-2 pr-4 font-mono text-text-primary">page</td>
                         <td className="py-2 pr-4">number</td>
                         <td className="py-2 pr-4">{t('apiDocs.no')}</td>
                         <td className="py-2">{t('apiDocs.default')}: 1</td>
                       </tr>
                       <tr>
-                        <td className="py-2 pr-4 font-mono text-white">limit</td>
+                        <td className="py-2 pr-4 font-mono text-text-primary">limit</td>
                         <td className="py-2 pr-4">number</td>
                         <td className="py-2 pr-4">{t('apiDocs.no')}</td>
                         <td className="py-2">{t('apiDocs.default')}: 20 (max 100)</td>
@@ -330,7 +330,7 @@ export default function ApiDocsPage(): React.ReactElement {
                     </tbody>
                   </table>
                 </div>
-                <h4 className="text-sm font-heading uppercase tracking-wider text-slate-300 pt-2">
+                <h4 className="text-sm font-heading text-text-secondary pt-2">
                   {t('apiDocs.response')}
                 </h4>
                 <CodeBlock>{`{
@@ -363,7 +363,7 @@ export default function ApiDocsPage(): React.ReactElement {
 
           {/* Address Endpoints */}
           <div className="space-y-4">
-            <h3 className="font-heading text-xl font-semibold uppercase tracking-wider text-white">
+            <h3 className="font-heading text-xl font-semibold text-text-primary">
               {t('apiDocs.addressEndpoints')}
             </h3>
 
@@ -373,39 +373,39 @@ export default function ApiDocsPage(): React.ReactElement {
               description={t('apiDocs.getAddress')}
             >
               <div className="space-y-3">
-                <h4 className="text-sm font-heading uppercase tracking-wider text-slate-300">
+                <h4 className="text-sm font-heading text-text-secondary">
                   {t('apiDocs.pathParams')}
                 </h4>
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="border-b border-navy-700 text-left">
-                        <th className="py-2 pr-4 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                      <tr className="border-b border-border text-left">
+                        <th className="py-2 pr-4 font-heading text-text-muted text-xs">
                           {t('apiDocs.param')}
                         </th>
-                        <th className="py-2 pr-4 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                        <th className="py-2 pr-4 font-heading text-text-muted text-xs">
                           {t('apiDocs.type')}
                         </th>
-                        <th className="py-2 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                        <th className="py-2 font-heading text-text-muted text-xs">
                           {t('apiDocs.paramDesc')}
                         </th>
                       </tr>
                     </thead>
-                    <tbody className="text-slate-300">
-                      <tr className="border-b border-navy-700/50">
-                        <td className="py-2 pr-4 font-mono text-white">chain</td>
+                    <tbody className="text-text-secondary">
+                      <tr className="border-b border-border/50">
+                        <td className="py-2 pr-4 font-mono text-text-primary">chain</td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2">ETH, BTC, SOL, TRON, BSC, MATIC, OTHER</td>
                       </tr>
                       <tr>
-                        <td className="py-2 pr-4 font-mono text-white">address</td>
+                        <td className="py-2 pr-4 font-mono text-text-primary">address</td>
                         <td className="py-2 pr-4">string</td>
                         <td className="py-2">Wallet address</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-                <h4 className="text-sm font-heading uppercase tracking-wider text-slate-300 pt-2">
+                <h4 className="text-sm font-heading text-text-secondary pt-2">
                   {t('apiDocs.response')}
                 </h4>
                 <CodeBlock>{`{
@@ -438,7 +438,7 @@ export default function ApiDocsPage(): React.ReactElement {
               description={t('apiDocs.batchAddress')}
             >
               <div className="space-y-3">
-                <h4 className="text-sm font-heading uppercase tracking-wider text-slate-300">
+                <h4 className="text-sm font-heading text-text-secondary">
                   {t('apiDocs.requestBody')}
                 </h4>
                 <CodeBlock>{`{
@@ -453,7 +453,7 @@ export default function ApiDocsPage(): React.ReactElement {
 
           {/* Stats Endpoints */}
           <div className="space-y-4">
-            <h3 className="font-heading text-xl font-semibold uppercase tracking-wider text-white">
+            <h3 className="font-heading text-xl font-semibold text-text-primary">
               {t('apiDocs.statsEndpoints')}
             </h3>
 
@@ -463,7 +463,7 @@ export default function ApiDocsPage(): React.ReactElement {
               description={t('apiDocs.statsOverview')}
             >
               <div className="space-y-3">
-                <h4 className="text-sm font-heading uppercase tracking-wider text-slate-300">
+                <h4 className="text-sm font-heading text-text-secondary">
                   {t('apiDocs.response')}
                 </h4>
                 <CodeBlock>{`{
@@ -484,7 +484,7 @@ export default function ApiDocsPage(): React.ReactElement {
               description={t('apiDocs.statsTrends')}
             >
               <div className="space-y-3">
-                <h4 className="text-sm font-heading uppercase tracking-wider text-slate-300">
+                <h4 className="text-sm font-heading text-text-secondary">
                   {t('apiDocs.response')}
                 </h4>
                 <CodeBlock>{`{
@@ -503,7 +503,7 @@ export default function ApiDocsPage(): React.ReactElement {
               description={t('apiDocs.statsBreakdown')}
             >
               <div className="space-y-3">
-                <h4 className="text-sm font-heading uppercase tracking-wider text-slate-300">
+                <h4 className="text-sm font-heading text-text-secondary">
                   {t('apiDocs.response')}
                 </h4>
                 <CodeBlock>{`{
@@ -526,24 +526,24 @@ export default function ApiDocsPage(): React.ReactElement {
 
         {/* ─── Authentication ─── */}
         <section id="authentication" className="space-y-6 animate-fade-in stagger-3">
-          <h2 className="font-heading text-2xl font-bold uppercase tracking-wider text-white border-b border-navy-700 pb-3">
+          <h2 className="font-heading text-2xl font-bold text-text-primary border-b border-border pb-3">
             {t('apiDocs.authentication')}
           </h2>
-          <p className="text-slate-300">{t('apiDocs.authDesc')}</p>
+          <p className="text-text-secondary">{t('apiDocs.authDesc')}</p>
 
           <div className="space-y-2">
-            <h3 className="font-heading text-lg font-semibold uppercase tracking-wider text-white">
+            <h3 className="font-heading text-lg font-semibold text-text-primary">
               {t('apiDocs.authKeyFormat')}
             </h3>
-            <p className="text-slate-400 text-sm">{t('apiDocs.authKeyFormatDesc')}</p>
+            <p className="text-text-muted text-sm">{t('apiDocs.authKeyFormatDesc')}</p>
             <CodeBlock>{'csr_a1b2c3d4e5f6...  (68 characters total)'}</CodeBlock>
           </div>
 
           <div className="space-y-2">
-            <h3 className="font-heading text-lg font-semibold uppercase tracking-wider text-white">
+            <h3 className="font-heading text-lg font-semibold text-text-primary">
               {t('apiDocs.authHowToGet')}
             </h3>
-            <ol className="list-decimal list-inside space-y-2 text-sm text-slate-400">
+            <ol className="list-decimal list-inside space-y-2 text-sm text-text-muted">
               <li>{t('apiDocs.authStep1')}</li>
               <li>{t('apiDocs.authStep2')}</li>
               <li>{t('apiDocs.authStep3')}</li>
@@ -552,7 +552,7 @@ export default function ApiDocsPage(): React.ReactElement {
           </div>
 
           <div className="space-y-2">
-            <p className="text-slate-400 text-sm">{t('apiDocs.authHeaderDesc')}</p>
+            <p className="text-text-muted text-sm">{t('apiDocs.authHeaderDesc')}</p>
             <CodeBlock>{`curl -X GET "https://api.scamledger.com/v1/stats/overview" \\
   -H "X-API-Key: csr_your_key_here"`}</CodeBlock>
           </div>
@@ -560,38 +560,38 @@ export default function ApiDocsPage(): React.ReactElement {
 
         {/* ─── Rate Limits ─── */}
         <section id="rate-limits" className="space-y-6 animate-fade-in stagger-4">
-          <h2 className="font-heading text-2xl font-bold uppercase tracking-wider text-white border-b border-navy-700 pb-3">
+          <h2 className="font-heading text-2xl font-bold text-text-primary border-b border-border pb-3">
             {t('apiDocs.rateLimits')}
           </h2>
-          <p className="text-slate-300">{t('apiDocs.rateLimitsDesc')}</p>
+          <p className="text-text-secondary">{t('apiDocs.rateLimitsDesc')}</p>
 
           <div className="space-y-2">
-            <h3 className="font-heading text-lg font-semibold uppercase tracking-wider text-white">
+            <h3 className="font-heading text-lg font-semibold text-text-primary">
               {t('apiDocs.rateLimitHeaders')}
             </h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-navy-700 text-left">
-                    <th className="py-2 pr-4 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                  <tr className="border-b border-border text-left">
+                    <th className="py-2 pr-4 font-heading text-text-muted text-xs">
                       {t('apiDocs.header')}
                     </th>
-                    <th className="py-2 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                    <th className="py-2 font-heading text-text-muted text-xs">
                       {t('apiDocs.paramDesc')}
                     </th>
                   </tr>
                 </thead>
-                <tbody className="text-slate-300">
-                  <tr className="border-b border-navy-700/50">
-                    <td className="py-2 pr-4 font-mono text-white">X-RateLimit-Limit</td>
+                <tbody className="text-text-secondary">
+                  <tr className="border-b border-border/50">
+                    <td className="py-2 pr-4 font-mono text-text-primary">X-RateLimit-Limit</td>
                     <td className="py-2">{t('apiDocs.rateLimitHeaderLimit')}</td>
                   </tr>
-                  <tr className="border-b border-navy-700/50">
-                    <td className="py-2 pr-4 font-mono text-white">X-RateLimit-Remaining</td>
+                  <tr className="border-b border-border/50">
+                    <td className="py-2 pr-4 font-mono text-text-primary">X-RateLimit-Remaining</td>
                     <td className="py-2">{t('apiDocs.rateLimitHeaderRemaining')}</td>
                   </tr>
                   <tr>
-                    <td className="py-2 pr-4 font-mono text-white">X-RateLimit-Reset</td>
+                    <td className="py-2 pr-4 font-mono text-text-primary">X-RateLimit-Reset</td>
                     <td className="py-2">{t('apiDocs.rateLimitHeaderReset')}</td>
                   </tr>
                 </tbody>
@@ -599,7 +599,7 @@ export default function ApiDocsPage(): React.ReactElement {
             </div>
           </div>
 
-          <div className="bg-threat-amber/10 border border-threat-amber/30 rounded-lg p-4 text-sm text-threat-amber">
+          <div className="bg-warning/10 border border-warning/30 rounded-lg p-4 text-sm text-warning">
             <p>{t('apiDocs.rateLimitExceeded')}</p>
           </div>
 
@@ -620,10 +620,10 @@ X-RateLimit-Reset: 1740700860
 
         {/* ─── Error Codes ─── */}
         <section id="error-codes" className="space-y-6">
-          <h2 className="font-heading text-2xl font-bold uppercase tracking-wider text-white border-b border-navy-700 pb-3">
+          <h2 className="font-heading text-2xl font-bold text-text-primary border-b border-border pb-3">
             {t('apiDocs.errorCodes')}
           </h2>
-          <p className="text-slate-300">{t('apiDocs.errorCodesDesc')}</p>
+          <p className="text-text-secondary">{t('apiDocs.errorCodesDesc')}</p>
 
           <CodeBlock>{`{
   "success": false,
@@ -637,38 +637,38 @@ X-RateLimit-Reset: 1740700860
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-navy-700 text-left">
-                  <th className="py-2 pr-4 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                <tr className="border-b border-border text-left">
+                  <th className="py-2 pr-4 font-heading text-text-muted text-xs">
                     {t('apiDocs.errorCode')}
                   </th>
-                  <th className="py-2 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                  <th className="py-2 font-heading text-text-muted text-xs">
                     {t('apiDocs.errorMessage')}
                   </th>
                 </tr>
               </thead>
-              <tbody className="text-slate-300">
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-threat-red">VALIDATION_ERROR</td>
+              <tbody className="text-text-secondary">
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-danger">VALIDATION_ERROR</td>
                   <td className="py-2">{t('apiDocs.errorValidation')}</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-threat-red">DUPLICATE_REPORT</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-danger">DUPLICATE_REPORT</td>
                   <td className="py-2">{t('apiDocs.errorDuplicate')}</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-threat-red">UNAUTHORIZED</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-danger">UNAUTHORIZED</td>
                   <td className="py-2">{t('apiDocs.errorUnauthorized')}</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-threat-amber">RATE_LIMITED</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-warning">RATE_LIMITED</td>
                   <td className="py-2">{t('apiDocs.errorRateLimited')}</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-slate-400">NOT_FOUND</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-text-muted">NOT_FOUND</td>
                   <td className="py-2">{t('apiDocs.errorNotFound')}</td>
                 </tr>
                 <tr>
-                  <td className="py-2 pr-4 font-mono text-threat-amber">MAX_KEYS_EXCEEDED</td>
+                  <td className="py-2 pr-4 font-mono text-warning">MAX_KEYS_EXCEEDED</td>
                   <td className="py-2">{t('apiDocs.errorMaxKeys')}</td>
                 </tr>
               </tbody>
@@ -678,59 +678,59 @@ X-RateLimit-Reset: 1740700860
 
         {/* ─── Supported Chains ─── */}
         <section id="supported-chains" className="space-y-6">
-          <h2 className="font-heading text-2xl font-bold uppercase tracking-wider text-white border-b border-navy-700 pb-3">
+          <h2 className="font-heading text-2xl font-bold text-text-primary border-b border-border pb-3">
             {t('apiDocs.supportedChains')}
           </h2>
-          <p className="text-slate-300">{t('apiDocs.supportedChainsDesc')}</p>
+          <p className="text-text-secondary">{t('apiDocs.supportedChainsDesc')}</p>
 
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-navy-700 text-left">
-                  <th className="py-2 pr-4 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                <tr className="border-b border-border text-left">
+                  <th className="py-2 pr-4 font-heading text-text-muted text-xs">
                     {t('apiDocs.chainId')}
                   </th>
-                  <th className="py-2 pr-4 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                  <th className="py-2 pr-4 font-heading text-text-muted text-xs">
                     {t('apiDocs.chainName')}
                   </th>
-                  <th className="py-2 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                  <th className="py-2 font-heading text-text-muted text-xs">
                     {t('apiDocs.addressFormat')}
                   </th>
                 </tr>
               </thead>
-              <tbody className="text-slate-300">
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-white">ETH</td>
+              <tbody className="text-text-secondary">
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-text-primary">ETH</td>
                   <td className="py-2 pr-4">{t('chain.ETH')}</td>
                   <td className="py-2 font-mono text-xs">0x + 40 hex chars</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-white">BTC</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-text-primary">BTC</td>
                   <td className="py-2 pr-4">{t('chain.BTC')}</td>
                   <td className="py-2 font-mono text-xs">1/3/bc1 prefix</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-white">SOL</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-text-primary">SOL</td>
                   <td className="py-2 pr-4">{t('chain.SOL')}</td>
                   <td className="py-2 font-mono text-xs">Base58, 32-44 chars</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-white">TRON</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-text-primary">TRON</td>
                   <td className="py-2 pr-4">{t('chain.TRON')}</td>
                   <td className="py-2 font-mono text-xs">T prefix + 33 chars</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-white">BSC</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-text-primary">BSC</td>
                   <td className="py-2 pr-4">{t('chain.BSC')}</td>
                   <td className="py-2 font-mono text-xs">0x + 40 hex chars</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-white">MATIC</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-text-primary">MATIC</td>
                   <td className="py-2 pr-4">{t('chain.MATIC')}</td>
                   <td className="py-2 font-mono text-xs">0x + 40 hex chars</td>
                 </tr>
                 <tr>
-                  <td className="py-2 pr-4 font-mono text-white">OTHER</td>
+                  <td className="py-2 pr-4 font-mono text-text-primary">OTHER</td>
                   <td className="py-2 pr-4">{t('chain.OTHER')}</td>
                   <td className="py-2 font-mono text-xs">--</td>
                 </tr>
@@ -741,58 +741,58 @@ X-RateLimit-Reset: 1740700860
 
         {/* ─── Scam Types ─── */}
         <section id="scam-types" className="space-y-6">
-          <h2 className="font-heading text-2xl font-bold uppercase tracking-wider text-white border-b border-navy-700 pb-3">
+          <h2 className="font-heading text-2xl font-bold text-text-primary border-b border-border pb-3">
             {t('apiDocs.supportedScamTypes')}
           </h2>
-          <p className="text-slate-300">{t('apiDocs.supportedScamTypesDesc')}</p>
+          <p className="text-text-secondary">{t('apiDocs.supportedScamTypesDesc')}</p>
 
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b border-navy-700 text-left">
-                  <th className="py-2 pr-4 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                <tr className="border-b border-border text-left">
+                  <th className="py-2 pr-4 font-heading text-text-muted text-xs">
                     {t('apiDocs.scamTypeId')}
                   </th>
-                  <th className="py-2 font-heading uppercase tracking-wider text-slate-400 text-xs">
+                  <th className="py-2 font-heading text-text-muted text-xs">
                     {t('apiDocs.scamTypeName')}
                   </th>
                 </tr>
               </thead>
-              <tbody className="text-slate-300">
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-white">phishing</td>
+              <tbody className="text-text-secondary">
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-text-primary">phishing</td>
                   <td className="py-2">{t('scamType.phishing')}</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-white">rug_pull</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-text-primary">rug_pull</td>
                   <td className="py-2">{t('scamType.rug_pull')}</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-white">fake_exchange</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-text-primary">fake_exchange</td>
                   <td className="py-2">{t('scamType.fake_exchange')}</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-white">hack</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-text-primary">hack</td>
                   <td className="py-2">{t('scamType.hack')}</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-white">ponzi</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-text-primary">ponzi</td>
                   <td className="py-2">{t('scamType.ponzi')}</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-white">impersonation</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-text-primary">impersonation</td>
                   <td className="py-2">{t('scamType.impersonation')}</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-white">fake_airdrop</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-text-primary">fake_airdrop</td>
                   <td className="py-2">{t('scamType.fake_airdrop')}</td>
                 </tr>
-                <tr className="border-b border-navy-700/50">
-                  <td className="py-2 pr-4 font-mono text-white">romance</td>
+                <tr className="border-b border-border/50">
+                  <td className="py-2 pr-4 font-mono text-text-primary">romance</td>
                   <td className="py-2">{t('scamType.romance')}</td>
                 </tr>
                 <tr>
-                  <td className="py-2 pr-4 font-mono text-white">other</td>
+                  <td className="py-2 pr-4 font-mono text-text-primary">other</td>
                   <td className="py-2">{t('scamType.other')}</td>
                 </tr>
               </tbody>

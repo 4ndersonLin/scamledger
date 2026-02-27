@@ -14,7 +14,7 @@ export default function AddressInput({
       type="text"
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className="w-full bg-navy-800 border border-navy-600 rounded px-4 py-3 font-mono text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-accent focus:ring-1 focus:ring-blue-accent"
+      className="w-full bg-surface-sunken border border-border-subtle rounded-xl px-4 py-3 font-mono text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent"
       placeholder="0x..."
     />
   );

@@ -12,13 +12,13 @@ export default function ChainSelector({ value, onChange }: ChainSelectorProps): 
 
   return (
     <div>
-      <label className="block text-sm font-heading uppercase tracking-wider text-slate-300 mb-1">
+      <label className="block text-sm font-heading text-text-secondary mb-1">
         {t('report.chain')}
       </label>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value as Chain)}
-        className="w-full bg-navy-800 border border-navy-600 rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-blue-accent focus:ring-1 focus:ring-blue-accent/30 transition-all"
+        className="w-full bg-surface-sunken border border-border-subtle rounded-lg px-4 py-3 text-sm text-text-primary focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30 transition-all"
       >
         <option value="" disabled>
           -- {t('report.chain')} --

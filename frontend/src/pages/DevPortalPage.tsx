@@ -172,31 +172,29 @@ export default function DevPortalPage(): React.ReactElement {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-heading font-bold uppercase tracking-wider text-white">
-            {t('dev.title')}
-          </h1>
-          {user && <p className="text-slate-400 text-sm mt-1">{user.display_name}</p>}
+          <h1 className="text-3xl font-heading font-bold text-text-primary">{t('dev.title')}</h1>
+          {user && <p className="text-text-muted text-sm mt-1">{user.display_name}</p>}
         </div>
         <button
           onClick={() => void handleLogout()}
-          className="px-4 py-2 border border-navy-600 text-slate-300 rounded font-heading uppercase tracking-wider text-sm hover:border-red-500/50 hover:text-red-400 transition-colors"
+          className="px-4 py-2 border border-border-subtle text-text-secondary rounded-lg font-heading text-sm hover:border-red-500/50 hover:text-red-400 transition-colors"
         >
           {t('dev.logout')}
         </button>
       </div>
 
       {error && (
-        <div className="mb-6 p-3 bg-red-500/10 border border-red-500/30 rounded text-red-400 text-sm">
+        <div className="mb-6 p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm">
           {error}
         </div>
       )}
 
       {/* API Keys Section */}
-      <div className="bg-navy-800 border border-navy-700 rounded-lg overflow-hidden">
-        <div className="h-0.5 bg-gold" />
+      <div className="bg-surface-raised border border-border rounded-xl shadow-sm overflow-hidden">
+        <div className="h-0.5 bg-accent-developer" />
         <div className="p-6">
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-heading font-semibold uppercase tracking-wider text-white">
+            <h2 className="text-xl font-heading font-semibold text-text-primary">
               {t('dev.apiKeys')}
             </h2>
             <button
@@ -205,7 +203,7 @@ export default function DevPortalPage(): React.ReactElement {
                 setCreatedKey(null);
                 setNewKeyName('');
               }}
-              className="px-4 py-2 bg-gold text-navy-950 font-heading font-bold uppercase tracking-wider text-sm rounded hover:bg-gold/90 transition-colors"
+              className="px-4 py-2 bg-accent-developer text-white font-heading font-bold text-sm rounded-lg hover:bg-accent-developer/90 transition-colors"
             >
               {t('dev.createKey')}
             </button>
@@ -214,7 +212,7 @@ export default function DevPortalPage(): React.ReactElement {
           {keysLoading ? (
             <LoadingSpinner />
           ) : apiKeys.length === 0 ? (
-            <div className="text-center py-12 text-slate-400">
+            <div className="text-center py-12 text-text-muted">
               <p className="text-lg mb-2">{t('dev.noKeys')}</p>
               <p className="text-sm">{t('dev.noKeysDescription')}</p>
             </div>
@@ -227,11 +225,14 @@ export default function DevPortalPage(): React.ReactElement {
                   : 0;
 
                 return (
-                  <div key={key.id} className="p-4 bg-navy-900 border border-navy-700 rounded-lg">
+                  <div
+                    key={key.id}
+                    className="p-4 bg-surface-sunken border border-border rounded-xl"
+                  >
                     <div className="flex items-start justify-between mb-3">
                       <div>
-                        <h3 className="text-white font-medium">{key.name}</h3>
-                        <p className="text-slate-500 font-mono text-sm mt-1">
+                        <h3 className="text-text-primary font-medium">{key.name}</h3>
+                        <p className="text-text-muted font-mono text-sm mt-1">
                           {key.key_prefix}
                           {'...'}
                         </p>
@@ -240,10 +241,10 @@ export default function DevPortalPage(): React.ReactElement {
                         {/* Toggle active/inactive */}
                         <button
                           onClick={() => void handleToggleKey(key.id, !key.is_active)}
-                          className={`px-3 py-1 rounded text-xs font-heading uppercase tracking-wider transition-colors ${
+                          className={`px-3 py-1 rounded text-xs font-heading transition-colors ${
                             key.is_active
-                              ? 'bg-green-500/10 text-green-400 border border-green-500/30 hover:bg-green-500/20'
-                              : 'bg-slate-500/10 text-slate-400 border border-slate-500/30 hover:bg-slate-500/20'
+                              ? 'bg-green-500/10 text-green-600 border border-green-500/30 hover:bg-green-500/20'
+                              : 'bg-slate-500/10 text-text-muted border border-slate-500/30 hover:bg-slate-500/20'
                           }`}
                         >
                           {key.is_active ? t('dev.active') : t('dev.inactive')}
@@ -251,7 +252,7 @@ export default function DevPortalPage(): React.ReactElement {
                         {/* Delete button */}
                         <button
                           onClick={() => setDeleteKeyId(key.id)}
-                          className="px-3 py-1 rounded text-xs font-heading uppercase tracking-wider text-red-400 border border-red-500/30 hover:bg-red-500/10 transition-colors"
+                          className="px-3 py-1 rounded text-xs font-heading text-red-400 border border-red-500/30 hover:bg-red-500/10 transition-colors"
                         >
                           {t('dev.delete')}
                         </button>
@@ -261,7 +262,7 @@ export default function DevPortalPage(): React.ReactElement {
                     {/* Usage info */}
                     {usage && (
                       <div className="mt-3 space-y-2">
-                        <div className="flex items-center justify-between text-xs text-slate-400">
+                        <div className="flex items-center justify-between text-xs text-text-muted">
                           <span>
                             {t('dev.usage')}: {usage.daily_usage} / {usage.daily_limit}
                           </span>
@@ -269,7 +270,7 @@ export default function DevPortalPage(): React.ReactElement {
                             {t('dev.totalRequests')}: {usage.total_requests.toLocaleString()}
                           </span>
                         </div>
-                        <div className="w-full h-1.5 bg-navy-700 rounded-full overflow-hidden">
+                        <div className="w-full h-1.5 bg-border rounded-full overflow-hidden">
                           <div
                             className={`h-full rounded-full transition-all ${
                               usagePercent > 80
@@ -282,7 +283,7 @@ export default function DevPortalPage(): React.ReactElement {
                           />
                         </div>
                         {usage.last_used_at && (
-                          <p className="text-xs text-slate-500">
+                          <p className="text-xs text-text-muted">
                             {t('dev.lastUsed')}: {new Date(usage.last_used_at).toLocaleString()}
                           </p>
                         )}
@@ -297,13 +298,13 @@ export default function DevPortalPage(): React.ReactElement {
       </div>
 
       {/* Quick Start Section */}
-      <div className="mt-8 bg-navy-800 border border-navy-700 rounded-lg overflow-hidden">
-        <div className="h-0.5 bg-blue-accent" />
+      <div className="mt-8 bg-surface-raised border border-border rounded-xl shadow-sm overflow-hidden">
+        <div className="h-0.5 bg-accent" />
         <div className="p-6">
-          <h2 className="text-xl font-heading font-semibold uppercase tracking-wider text-white mb-4">
+          <h2 className="text-xl font-heading font-semibold text-text-primary mb-4">
             {t('dev.quickStart')}
           </h2>
-          <div className="bg-navy-950 border border-navy-700 rounded p-4 overflow-x-auto">
+          <div className="bg-slate-900 border border-slate-700 rounded-lg p-4 overflow-x-auto">
             <pre className="text-sm font-mono text-slate-300 whitespace-pre">
               {`curl -X GET \\
   https://api.scamledger.com/v1/address/ETH/0x... \\
@@ -315,17 +316,17 @@ export default function DevPortalPage(): React.ReactElement {
 
       {/* Create Key Modal */}
       {showCreateModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-          <div className="bg-navy-800 border border-navy-700 rounded-lg w-full max-w-md mx-4 overflow-hidden">
-            <div className="h-0.5 bg-gold" />
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-surface-raised border border-border rounded-2xl shadow-xl w-full max-w-md mx-4 overflow-hidden">
+            <div className="h-0.5 bg-accent-developer" />
             <div className="p-6">
-              <h3 className="text-xl font-heading font-bold uppercase tracking-wider text-white mb-4">
+              <h3 className="text-xl font-heading font-bold text-text-primary mb-4">
                 {t('dev.createKey')}
               </h3>
 
               {createdKey ? (
                 <div className="space-y-4">
-                  <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded text-amber-400 text-sm">
+                  <div className="p-3 bg-amber-500/10 border border-amber-500/30 rounded-lg text-amber-600 text-sm">
                     {t('dev.keyWarning')}
                   </div>
                   <div className="relative">
@@ -333,11 +334,11 @@ export default function DevPortalPage(): React.ReactElement {
                       type="text"
                       readOnly
                       value={createdKey}
-                      className="w-full px-4 py-3 pr-20 bg-navy-900 border border-navy-600 rounded text-white font-mono text-sm"
+                      className="w-full px-4 py-3 pr-20 bg-surface-sunken border border-border-subtle rounded-lg text-text-primary font-mono text-sm"
                     />
                     <button
                       onClick={() => void handleCopyKey(createdKey)}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1 bg-navy-700 text-slate-300 rounded text-xs font-heading uppercase tracking-wider hover:bg-navy-600 transition-colors"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 px-3 py-1 bg-surface-sunken border border-border text-text-secondary rounded text-xs font-heading hover:bg-border transition-colors"
                     >
                       {copied ? t('common.copied') : t('common.copy')}
                     </button>
@@ -347,7 +348,7 @@ export default function DevPortalPage(): React.ReactElement {
                       setShowCreateModal(false);
                       setCreatedKey(null);
                     }}
-                    className="w-full py-3 px-6 bg-gold text-navy-950 font-heading font-bold uppercase tracking-wider rounded hover:bg-gold/90 transition-colors"
+                    className="w-full py-3 px-6 bg-accent-developer text-white font-heading font-bold rounded-lg hover:bg-accent-developer/90 transition-colors"
                   >
                     {t('dev.done')}
                   </button>
@@ -357,7 +358,7 @@ export default function DevPortalPage(): React.ReactElement {
                   <div>
                     <label
                       htmlFor="keyName"
-                      className="block text-sm font-medium text-slate-300 mb-2"
+                      className="block text-sm font-medium text-text-secondary mb-2"
                     >
                       {t('dev.keyName')}
                     </label>
@@ -368,7 +369,7 @@ export default function DevPortalPage(): React.ReactElement {
                       onChange={(e) => setNewKeyName(e.target.value)}
                       placeholder={t('dev.keyNamePlaceholder')}
                       maxLength={64}
-                      className="w-full px-4 py-3 bg-navy-900 border border-navy-600 rounded text-white placeholder-slate-500 focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors"
+                      className="w-full px-4 py-3 bg-surface-sunken border border-border-subtle rounded-lg text-text-primary placeholder-text-muted focus:outline-none focus:border-accent-developer focus:ring-1 focus:ring-accent-developer transition-colors"
                       disabled={createLoading}
                     />
                   </div>
@@ -378,7 +379,7 @@ export default function DevPortalPage(): React.ReactElement {
                         setShowCreateModal(false);
                         setNewKeyName('');
                       }}
-                      className="flex-1 py-3 px-6 border border-navy-600 text-slate-300 font-heading uppercase tracking-wider rounded hover:border-slate-500 transition-colors"
+                      className="flex-1 py-3 px-6 border border-border-subtle text-text-secondary font-heading rounded-lg hover:border-border transition-colors"
                       disabled={createLoading}
                     >
                       {t('dev.cancel')}
@@ -386,7 +387,7 @@ export default function DevPortalPage(): React.ReactElement {
                     <button
                       onClick={() => void handleCreateKey()}
                       disabled={createLoading || !newKeyName.trim()}
-                      className="flex-1 py-3 px-6 bg-gold text-navy-950 font-heading font-bold uppercase tracking-wider rounded hover:bg-gold/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                      className="flex-1 py-3 px-6 bg-accent-developer text-white font-heading font-bold rounded-lg hover:bg-accent-developer/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
                       {createLoading ? t('common.loading') : t('dev.createKey')}
                     </button>
@@ -400,18 +401,18 @@ export default function DevPortalPage(): React.ReactElement {
 
       {/* Delete Confirmation Modal */}
       {deleteKeyId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-          <div className="bg-navy-800 border border-navy-700 rounded-lg w-full max-w-sm mx-4 overflow-hidden">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-surface-raised border border-border rounded-2xl shadow-xl w-full max-w-sm mx-4 overflow-hidden">
             <div className="h-0.5 bg-red-500" />
             <div className="p-6">
-              <h3 className="text-xl font-heading font-bold uppercase tracking-wider text-white mb-4">
+              <h3 className="text-xl font-heading font-bold text-text-primary mb-4">
                 {t('dev.confirmDelete')}
               </h3>
-              <p className="text-slate-400 text-sm mb-6">{t('dev.confirmDeleteDescription')}</p>
+              <p className="text-text-muted text-sm mb-6">{t('dev.confirmDeleteDescription')}</p>
               <div className="flex gap-3">
                 <button
                   onClick={() => setDeleteKeyId(null)}
-                  className="flex-1 py-3 px-6 border border-navy-600 text-slate-300 font-heading uppercase tracking-wider rounded hover:border-slate-500 transition-colors"
+                  className="flex-1 py-3 px-6 border border-border-subtle text-text-secondary font-heading rounded-lg hover:border-border transition-colors"
                   disabled={deleteLoading}
                 >
                   {t('dev.cancel')}
@@ -419,7 +420,7 @@ export default function DevPortalPage(): React.ReactElement {
                 <button
                   onClick={() => void handleDeleteKey(deleteKeyId)}
                   disabled={deleteLoading}
-                  className="flex-1 py-3 px-6 bg-red-500 text-white font-heading font-bold uppercase tracking-wider rounded hover:bg-red-600 disabled:opacity-50 transition-colors"
+                  className="flex-1 py-3 px-6 bg-red-500 text-white font-heading font-bold rounded-lg hover:bg-red-600 disabled:opacity-50 transition-colors"
                 >
                   {deleteLoading ? t('common.loading') : t('dev.delete')}
                 </button>

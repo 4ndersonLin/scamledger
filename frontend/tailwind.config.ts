@@ -5,28 +5,28 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: {
-          950: '#0a0e1a',
-          900: '#0d1321',
-          800: '#131b2e',
-          700: '#1a2540',
-          600: '#243052',
+        surface: {
+          DEFAULT: '#f8fafc',
+          raised: '#ffffff',
+          sunken: '#f1f5f9',
         },
-        slate: {
-          200: '#c8d0e0',
-          300: '#a8b2c8',
-          400: '#8892a8',
+        border: {
+          DEFAULT: '#e2e8f0',
+          subtle: '#cbd5e1',
         },
-        'blue-accent': '#3b82f6',
-        threat: {
-          red: '#e63946',
-          amber: '#f59e0b',
-          green: '#10b981',
+        'text-primary': '#334155',
+        'text-secondary': '#64748b',
+        'text-muted': '#94a3b8',
+        accent: {
+          DEFAULT: '#3b82f6',
+          developer: '#2563eb',
         },
-        gold: '#c9a84c',
+        danger: '#ef4444',
+        warning: '#f59e0b',
+        success: '#22c55e',
       },
       fontFamily: {
-        heading: ['"Barlow Condensed"', 'sans-serif'],
+        heading: ['Barlow', '"Noto Sans TC"', 'sans-serif'],
         body: ['Barlow', '"Noto Sans TC"', 'sans-serif'],
         mono: ['"IBM Plex Mono"', 'monospace'],
       },

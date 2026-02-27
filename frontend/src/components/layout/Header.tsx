@@ -20,8 +20,8 @@ export default function Header(): React.ReactElement {
   }, []);
 
   const navLinkClass = ({ isActive }: { isActive: boolean }): string =>
-    `font-heading uppercase tracking-wider text-sm transition-colors ${
-      isActive ? 'text-blue-accent' : 'text-slate-300 hover:text-white'
+    `font-heading text-sm transition-colors ${
+      isActive ? 'text-accent' : 'text-text-secondary hover:text-text-primary'
     }`;
 
   const navItems = [
@@ -35,16 +35,19 @@ export default function Header(): React.ReactElement {
 
   return (
     <header role="banner">
-      {/* Classification bar */}
+      {/* Help banner */}
       <div
-        className="bg-threat-red/90 text-white font-heading text-xs text-center py-0.5 uppercase tracking-widest"
-        aria-label={t('footer.classification')}
+        className="bg-accent text-white text-sm text-center py-1.5 px-4"
+        aria-label={t('banner.helpMessage')}
       >
-        {t('footer.classification')}
+        {t('banner.helpMessage')}
       </div>
 
       {/* Main nav */}
-      <nav className="bg-navy-900 border-b border-navy-700" aria-label="Main navigation">
+      <nav
+        className="bg-surface-raised border-b border-border shadow-sm"
+        aria-label="Main navigation"
+      >
         <div className="container mx-auto px-4 flex items-center justify-between h-14">
           {/* Logo */}
           <NavLink to="/" className="flex items-center gap-2" aria-label="ScamLedger Home">
@@ -71,9 +74,7 @@ export default function Header(): React.ReactElement {
               />
               <circle cx="14" cy="14" r="2" fill="#3b82f6" />
             </svg>
-            <span className="font-heading uppercase tracking-[2.5px] text-lg font-bold text-white">
-              SCAMLEDGER
-            </span>
+            <span className="font-heading text-lg font-bold text-text-primary">ScamLedger</span>
           </NavLink>
 
           {/* Desktop nav links */}
@@ -91,7 +92,7 @@ export default function Header(): React.ReactElement {
             ))}
             <button
               onClick={toggleLanguage}
-              className="text-sm font-mono text-slate-400 hover:text-white border border-navy-600 px-2 py-1 rounded transition-colors"
+              className="text-sm font-mono text-text-muted hover:text-text-primary border border-border-subtle px-2 py-1 rounded transition-colors"
               aria-label={i18n.language === 'zh-TW' ? 'Switch to English' : 'Switch to Chinese'}
             >
               {i18n.language === 'zh-TW' ? 'EN' : '中文'}
@@ -100,7 +101,7 @@ export default function Header(): React.ReactElement {
 
           {/* Mobile hamburger */}
           <button
-            className="md:hidden text-slate-300 hover:text-white p-1 rounded transition-colors"
+            className="md:hidden text-text-secondary hover:text-text-primary p-1 rounded transition-colors"
             onClick={toggleMobileMenu}
             aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={mobileMenuOpen}
@@ -128,7 +129,7 @@ export default function Header(): React.ReactElement {
         {mobileMenuOpen && (
           <div
             id="mobile-nav-menu"
-            className="md:hidden border-t border-navy-700 bg-navy-900 px-4 py-4 space-y-1"
+            className="md:hidden border-t border-border bg-surface-raised px-4 py-4 space-y-1"
             role="menu"
           >
             {navItems.map((item) => (
@@ -136,10 +137,10 @@ export default function Header(): React.ReactElement {
                 key={item.to}
                 to={item.to}
                 className={({ isActive }: { isActive: boolean }): string =>
-                  `block py-2 px-3 rounded font-heading uppercase tracking-wider text-sm transition-colors ${
+                  `block py-2 px-3 rounded font-heading text-sm transition-colors ${
                     isActive
-                      ? 'text-blue-accent bg-navy-800'
-                      : 'text-slate-300 hover:text-white hover:bg-navy-800'
+                      ? 'text-accent bg-surface-sunken'
+                      : 'text-text-secondary hover:text-text-primary hover:bg-surface-sunken'
                   }`
                 }
                 end={item.to === '/'}
@@ -149,10 +150,10 @@ export default function Header(): React.ReactElement {
                 {item.label}
               </NavLink>
             ))}
-            <div className="pt-2 border-t border-navy-700 mt-2">
+            <div className="pt-2 border-t border-border mt-2">
               <button
                 onClick={toggleLanguage}
-                className="text-sm font-mono text-slate-400 hover:text-white border border-navy-600 px-3 py-2 rounded transition-colors w-full text-left"
+                className="text-sm font-mono text-text-muted hover:text-text-primary border border-border-subtle px-3 py-2 rounded transition-colors w-full text-left"
                 aria-label={i18n.language === 'zh-TW' ? 'Switch to English' : 'Switch to Chinese'}
               >
                 {i18n.language === 'zh-TW' ? 'EN — English' : '中文 — Chinese'}

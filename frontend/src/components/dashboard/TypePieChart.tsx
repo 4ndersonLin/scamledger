@@ -13,10 +13,10 @@ interface BreakdownData {
 
 const PIE_COLORS = [
   '#3b82f6',
-  '#e63946',
+  '#ef4444',
   '#f59e0b',
-  '#10b981',
-  '#c9a84c',
+  '#22c55e',
+  '#2563eb',
   '#8b5cf6',
   '#ec4899',
   '#06b6d4',
@@ -39,9 +39,9 @@ function CustomTooltip({
 
   const entry = payload[0];
   return (
-    <div className="bg-navy-800 border border-navy-700 rounded-lg px-3 py-2 shadow-lg">
-      <p className="text-xs text-slate-400 mb-1">{String(entry.name)}</p>
-      <p className="text-sm font-heading font-bold text-white">
+    <div className="bg-surface-raised border border-border rounded-lg px-3 py-2 shadow-lg">
+      <p className="text-xs text-text-muted mb-1">{String(entry.name)}</p>
+      <p className="text-sm font-heading font-bold text-text-primary">
         {Number(entry.value).toLocaleString()}
       </p>
     </div>
@@ -79,7 +79,7 @@ function renderCustomLabel({
     <text
       x={x}
       y={y}
-      fill="#f0f2f7"
+      fill="#334155"
       textAnchor="middle"
       dominantBaseline="central"
       fontSize={11}
@@ -106,13 +106,13 @@ function CustomLegend({ payload }: { payload?: LegendEntry[] }): React.ReactElem
   return (
     <ul className="flex flex-wrap gap-x-4 gap-y-1 justify-center mt-2">
       {payload.map((entry) => (
-        <li key={entry.value} className="flex items-center gap-1.5 text-xs text-slate-300">
+        <li key={entry.value} className="flex items-center gap-1.5 text-xs text-text-secondary">
           <span
             className="inline-block w-2.5 h-2.5 rounded-sm shrink-0"
             style={{ backgroundColor: entry.color }}
           />
           <span>{entry.value}</span>
-          <span className="text-slate-400">({entry.payload?.value ?? 0})</span>
+          <span className="text-text-muted">({entry.payload?.value ?? 0})</span>
         </li>
       ))}
     </ul>
@@ -134,10 +134,10 @@ export default function TypePieChart(): React.ReactElement {
     }) ?? [];
 
   return (
-    <div className="bg-navy-800 border border-navy-700 rounded-lg overflow-hidden">
-      <div className="h-0.5 bg-threat-red" />
+    <div className="bg-surface-raised border border-border rounded-xl shadow-sm overflow-hidden">
+      <div className="h-0.5 bg-danger" />
       <div className="p-4 md:p-6">
-        <h3 className="font-heading text-lg font-bold uppercase tracking-wider text-white mb-6">
+        <h3 className="font-heading text-lg font-bold text-text-primary mb-6">
           {t('dashboard.typeDistribution')}
         </h3>
 
@@ -166,7 +166,7 @@ export default function TypePieChart(): React.ReactElement {
             </PieChart>
           </ResponsiveContainer>
         ) : (
-          <div className="flex items-center justify-center h-[300px] text-slate-400 text-sm">
+          <div className="flex items-center justify-center h-[300px] text-text-muted text-sm">
             {t('search.noResults')}
           </div>
         )}

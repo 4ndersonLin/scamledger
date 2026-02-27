@@ -33,7 +33,7 @@ export default function SearchBar({
     <form onSubmit={handleSubmit} className="relative w-full">
       <div className="relative">
         <svg
-          className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"
+          className="absolute left-4 top-1/2 -translate-y-1/2 text-text-muted"
           width="20"
           height="20"
           viewBox="0 0 24 24"
@@ -51,7 +51,7 @@ export default function SearchBar({
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={placeholder ?? t('home.searchPlaceholder')}
-          className="w-full bg-navy-800 border border-navy-600 rounded-lg pl-12 pr-4 py-4 font-mono text-sm text-white placeholder-slate-400 focus:outline-none focus:border-blue-accent focus:ring-2 focus:ring-blue-accent/30 transition-all"
+          className="w-full bg-surface-raised border border-border rounded-xl pl-12 pr-4 py-4 font-mono text-sm text-text-primary placeholder-text-muted focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/30 shadow-sm transition-all"
         />
       </div>
     </form>

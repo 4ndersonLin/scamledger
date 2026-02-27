@@ -35,13 +35,13 @@ export default function ReportPage(): React.ReactElement {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h1 className="text-3xl font-heading font-bold uppercase tracking-wider text-white mb-8">
+      <h1 className="text-3xl font-heading font-bold text-text-primary mb-8">
         {t('report.title')}
       </h1>
 
       {submitError && (
-        <div className="mb-6 bg-threat-red/10 border border-threat-red/30 rounded-lg p-4">
-          <p className="text-sm text-threat-red">{submitError}</p>
+        <div className="mb-6 bg-danger/10 border border-danger/30 rounded-lg p-4">
+          <p className="text-sm text-danger">{submitError}</p>
         </div>
       )}
 

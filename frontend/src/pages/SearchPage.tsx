@@ -116,9 +116,7 @@ export default function SearchPage(): React.ReactElement {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-heading font-bold uppercase tracking-wider text-white">
-        {t('search.title')}
-      </h1>
+      <h1 className="text-3xl font-heading font-bold text-text-primary">{t('search.title')}</h1>
 
       <SearchBar
         initialQuery={query}
@@ -137,7 +135,7 @@ export default function SearchPage(): React.ReactElement {
 
       {/* Results count */}
       {!loading && totalResults > 0 && (
-        <p className="text-sm text-slate-400">
+        <p className="text-sm text-text-muted">
           {new Intl.NumberFormat('en-US').format(totalResults)} {t('search.results')}
         </p>
       )}
@@ -153,7 +151,7 @@ export default function SearchPage(): React.ReactElement {
         </div>
       ) : (
         <div className="text-center py-12">
-          <p className="text-slate-400">{t('search.noResults')}</p>
+          <p className="text-text-muted">{t('search.noResults')}</p>
         </div>
       )}
 
@@ -163,17 +161,17 @@ export default function SearchPage(): React.ReactElement {
           <button
             onClick={() => setPage((p) => Math.max(1, p - 1))}
             disabled={page <= 1}
-            className="px-4 py-2 bg-navy-800 border border-navy-600 rounded text-sm font-heading uppercase tracking-wider text-slate-300 hover:text-white hover:border-navy-500 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="px-4 py-2 bg-surface-raised border border-border rounded-lg text-sm font-heading text-text-secondary hover:text-text-primary hover:shadow-sm disabled:opacity-30 disabled:cursor-not-allowed transition-all"
           >
             {t('report.prev')}
           </button>
-          <span className="text-sm text-slate-400 font-mono">
+          <span className="text-sm text-text-muted font-mono">
             {page} / {totalPages}
           </span>
           <button
             onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
             disabled={page >= totalPages}
-            className="px-4 py-2 bg-navy-800 border border-navy-600 rounded text-sm font-heading uppercase tracking-wider text-slate-300 hover:text-white hover:border-navy-500 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+            className="px-4 py-2 bg-surface-raised border border-border rounded-lg text-sm font-heading text-text-secondary hover:text-text-primary hover:shadow-sm disabled:opacity-30 disabled:cursor-not-allowed transition-all"
           >
             {t('report.next')}
           </button>
