@@ -150,6 +150,61 @@ export default function AddressPage(): React.ReactElement {
         </Link>
       </div>
 
+      {/* External Intelligence */}
+      {data.threat_intel && data.threat_intel.length > 0 && (
+        <section>
+          <h2 className="font-heading text-xl font-bold text-text-primary mb-4">
+            {t('threatIntel.title')}
+          </h2>
+          <div className="space-y-4">
+            {data.threat_intel.map((intel) => (
+              <div
+                key={intel.id}
+                className="bg-surface-raised border border-danger/30 rounded-xl shadow-sm p-4"
+              >
+                <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
+                  <div className="flex items-center gap-2">
+                    {intel.source === 'ofac_sdn' && (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-heading bg-danger/10 text-danger border border-danger/30">
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                        {t('threatIntel.ofacSdn')}
+                      </span>
+                    )}
+                    {intel.confidence && (
+                      <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-heading bg-surface-sunken text-text-secondary border border-border">
+                        {t(`threatIntel.${intel.confidence}`)}
+                      </span>
+                    )}
+                  </div>
+                  <span className="text-xs text-text-muted font-mono">
+                    {t('threatIntel.fetchedAt')}: {formatDate(intel.fetched_at)}
+                  </span>
+                </div>
+                {intel.source === 'ofac_sdn' && (
+                  <p className="text-sm text-danger/80 leading-relaxed mb-2">
+                    {t('threatIntel.ofacWarning')}
+                  </p>
+                )}
+                {intel.description && (
+                  <p className="text-sm text-text-secondary leading-relaxed">{intel.description}</p>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Report history */}
       <section>
         <h2 className="font-heading text-xl font-bold text-text-primary mb-4">

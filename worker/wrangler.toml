@@ -3,8 +3,12 @@ main = "src/index.ts"
 compatibility_date = "2024-12-01"
 routes = [{ pattern = "api.scamledger.com", custom_domain = true }]
 
+[triggers]
+crons = ["0 2 * * *"]
+
 [vars]
 ENVIRONMENT = "production"
+THREAT_INTEL_ENABLED = "true"
 FRONTEND_URL = "https://scamledger.com"
 TURNSTILE_SECRET_KEY = ""
 RP_ID = "scamledger.com"

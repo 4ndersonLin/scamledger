@@ -19,6 +19,10 @@ export type RiskLevel = 'low' | 'medium' | 'high' | 'critical';
 
 export type ReportSource = 'web' | 'api';
 
+export type ThreatIntelSource = 'ofac_sdn';
+
+export type ThreatIntelConfidence = 'low' | 'medium' | 'high' | 'confirmed';
+
 // ──────────────────────────────────────────────
 // Database Models
 // ──────────────────────────────────────────────
@@ -54,9 +58,23 @@ export interface Address {
   report_count: number;
   total_lost_usd: number;
   risk_score: number;
+  has_threat_intel: number;
   first_reported_at: string;
   last_reported_at: string;
   updated_at: string;
+}
+
+export interface ThreatIntel {
+  id: string;
+  chain: Chain;
+  address: string;
+  source: ThreatIntelSource;
+  external_id: string | null;
+  scam_type: ScamType | null;
+  category: string | null;
+  description: string | null;
+  confidence: ThreatIntelConfidence | null;
+  fetched_at: string;
 }
 
 export interface User {
@@ -186,4 +204,5 @@ export interface SearchParams {
 
 export type AddressDetail = Address & {
   reports: PublicReport[];
+  threat_intel: ThreatIntel[];
 };

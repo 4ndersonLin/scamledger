@@ -68,7 +68,7 @@ export class SearchService {
     // Data query
     const dataResult = await this.env.DB.prepare(
       `SELECT a.id, a.chain, a.address, a.report_count, a.total_lost_usd,
-              a.risk_score, a.first_reported_at, a.last_reported_at, a.updated_at
+              a.risk_score, a.has_threat_intel, a.first_reported_at, a.last_reported_at, a.updated_at
        FROM addresses a
        WHERE ${whereClause}
        ORDER BY ${orderBy}

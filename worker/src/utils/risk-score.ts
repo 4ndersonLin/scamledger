@@ -3,8 +3,17 @@ export function calculateRiskScore(params: {
   recentReportsCount: number;
   totalLostUsd: number;
   lastReportedAt: string | null;
+  threatIntelCount?: number;
+  hasOfacSanction?: boolean;
 }): number {
-  const { reportCount, recentReportsCount, totalLostUsd, lastReportedAt } = params;
+  const {
+    reportCount,
+    recentReportsCount,
+    totalLostUsd,
+    lastReportedAt,
+    threatIntelCount = 0,
+    hasOfacSanction = false,
+  } = params;
 
   const base = Math.min(60, reportCount * 15);
   const frequency = recentReportsCount >= 3 ? 20 : 0;
@@ -19,5 +28,10 @@ export function calculateRiskScore(params: {
     if (hoursSince <= 24) recency = 10;
   }
 
-  return Math.min(100, base + frequency + amount + recency);
+  // Threat intelligence bonuses
+  const ofacBonus = hasOfacSanction ? 40 : 0;
+  const intelBonus =
+    !hasOfacSanction && threatIntelCount > 0 ? Math.min(25, threatIntelCount * 10) : 0;
+
+  return Math.min(100, base + frequency + amount + recency + ofacBonus + intelBonus);
 }
